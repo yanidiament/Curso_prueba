@@ -3,1712 +3,611 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gamificación: El Arte de Diseñar Experiencias Digitales Atrapantes</title>
-  
+  <title>Gamificación: el arte de diseñar experiencias digitales atrapantes</title>
+
   <!-- SEO Meta Tags -->
   <meta name="description" content="Domina el arte de la gamificación. Aprende a aplicar motivadores intrínsecos y extrínsecos, diseñar bucles de retroalimentación efectivos y crear experiencias de aprendizaje significativas.">
   <meta name="keywords" content="gamificacion, e-learning, motivacion, diseño instruccional, psicologia del juego, articulate rise">
-  
+
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🎮</text></svg>">
 
   <style>
-    /* VARIABLES DE DISEÑO & SISTEMA DE COLORES (Cálido y Enérgico) */
+    /* VARIABLES DE DISEÑO */
     :root {
-      --bg-page: #FDFBF7;         /* Crema muy suave */
-      --text-main: #2F3E46;       /* Gris oscuro/Antracita */
-      --text-muted: #627A86;      /* Gris intermedio suave */
-      --accent: #FF6B35;          /* Naranja enérgico */
-      --accent-hover: #E0531F;    /* Naranja oscuro para hover */
-      --secondary: #F7B733;       /* Amarillo cálido */
-      --secondary-light: #FEF7E7; /* Fondo amarillo muy sutil */
-      --card-bg: #FFFFFF;         /* Blanco puro */
-      --border-color: #EAE3D2;    /* Borde crema suave */
-      --success: #2EC4B6;         /* Turquesa/Verde éxito */
-      --success-light: #E8F9F7;   /* Fondo verde sutil */
-      --error: #E71D36;           /* Rojo error */
-      --error-light: #FDE8EA;     /* Fondo rojo sutil */
-      
-      --sidebar-bg: #F7F4EB;      /* Crema un poco más denso para sidebar */
+      --bg-page: #FDFBF7;
+      --text-main: #2F3E46;
+      --text-muted: #627A86;
+      --accent: #FF6B35;
+      --accent-hover: #E0531F;
+      --secondary: #F7B733;
+      --secondary-light: #FEF7E7;
+      --card-bg: #FFFFFF;
+      --border-color: #EAE3D2;
+      --success: #2EC4B6;
+      --success-light: #E8F9F7;
+      --error: #E71D36;
+      --error-light: #FDE8EA;
+      --sidebar-bg: #F7F4EB;
       --header-bg: rgba(253, 251, 247, 0.95);
-      
-      /* Sombras y Radios */
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
       --shadow-sm: 0 2px 4px rgba(47, 62, 70, 0.03);
       --shadow-md: 0 4px 16px rgba(47, 62, 70, 0.05);
       --shadow-lg: 0 10px 30px rgba(47, 62, 70, 0.08);
-      
-      /* Transiciones */
       --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      
-      /* Ancho Máximo del Contenido */
       --content-max-width: 800px;
     }
 
     /* ESTILOS GLOBALES */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-family: 'Inter', system-ui, -apple-system, sans-serif; color: var(--text-main); background-color: var(--bg-page); scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
 
-    html {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--text-main);
-      background-color: var(--bg-page);
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* HEADER FIJO (Estilo Rise) */
+    /* HEADER */
     .fixed-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 65px;
-      background-color: var(--header-bg);
-      backdrop-filter: blur(10px);
+      position: fixed; top: 0; left: 0; right: 0; height: 65px;
+      background-color: var(--header-bg); backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      z-index: 100;
-      box-shadow: var(--shadow-sm);
-      transition: left var(--transition-normal);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; z-index: 100; box-shadow: var(--shadow-sm);
     }
+    .header-left { display: flex; align-items: center; gap: 16px; }
+    .menu-toggle { background: none; border: none; color: var(--text-main); cursor: pointer; padding: 8px; border-radius: var(--radius-sm); display: flex; align-items: center; }
+    .menu-toggle:hover { background-color: rgba(47, 62, 70, 0.05); }
+    .menu-toggle svg { width: 24px; height: 24px; }
+    .course-mini-title { font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 350px; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .progress-text { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+    .progress-container { position: absolute; bottom: -4px; left: 0; right: 0; height: 4px; background-color: rgba(47, 62, 70, 0.08); }
+    .progress-bar { height: 100%; background-color: var(--accent); width: 20%; transition: width var(--transition-slow); }
 
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    /* Botón Hamburguesa */
-    .menu-toggle {
-      background: none;
-      border: none;
-      color: var(--text-main);
-      cursor: pointer;
-      padding: 8px;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color var(--transition-fast);
-    }
-    
-    .menu-toggle:hover {
-      background-color: rgba(47, 62, 70, 0.05);
-    }
-
-    .menu-toggle svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .course-mini-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 350px;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .progress-text {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    /* Barra de Progreso Dinámica */
-    .progress-container {
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background-color: rgba(47, 62, 70, 0.08);
-    }
-
-    .progress-bar {
-      height: 100%;
-      background-color: var(--accent);
-      width: 20%; /* Iniciado en 20% en base a Portada/Modulo 1 visibles */
-      transition: width var(--transition-slow);
-    }
-
-    /* SIDEBAR (Barra lateral izquierda) */
+    /* SIDEBAR */
     .sidebar {
-      position: fixed;
-      top: 65px;
-      left: -320px; /* Escondido por defecto en móviles */
-      width: 320px;
-      height: calc(100vh - 65px);
-      background-color: var(--sidebar-bg);
-      border-right: 1px solid var(--border-color);
-      overflow-y: auto;
-      z-index: 90;
-      transition: left var(--transition-normal);
-      padding: 24px 16px;
+      position: fixed; top: 65px; left: -320px; width: 320px;
+      height: calc(100vh - 65px); background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color); overflow-y: auto;
+      z-index: 90; transition: left var(--transition-normal); padding: 24px 16px;
     }
-
-    .sidebar.open {
-      left: 0;
-    }
-
-    .sidebar-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-      padding-left: 8px;
-    }
-
-    /* Elementos del Menú */
-    .sidebar-menu {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
+    .sidebar.open { left: 0; }
+    .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 16px; padding-left: 8px; }
+    .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .sidebar-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      color: var(--text-main);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: var(--radius-md);
-      transition: all var(--transition-fast);
-      cursor: pointer;
-      border: 1px solid transparent;
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+      color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+      border-radius: var(--radius-md); transition: all var(--transition-fast);
+      cursor: pointer; border: 1px solid transparent;
     }
+    .sidebar-item:hover { background-color: rgba(255, 107, 53, 0.06); color: var(--accent); }
+    .sidebar-item.active-nav { background-color: white; border-color: var(--border-color); box-shadow: var(--shadow-sm); font-weight: 600; }
+    .sidebar-item.locked { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+    .sidebar-item .status-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-item .status-icon svg { width: 18px; height: 18px; }
 
-    .sidebar-item:hover {
-      background-color: rgba(255, 107, 53, 0.06);
-      color: var(--accent);
-    }
-
-    .sidebar-item.active-nav {
-      background-color: white;
-      border-color: var(--border-color);
-      box-shadow: var(--shadow-sm);
-      font-weight: 600;
-    }
-
-    .sidebar-item.locked {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    .sidebar-item .status-icon {
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .sidebar-item .status-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    /* OVERLAY PARA MOVIL */
     .sidebar-overlay {
-      position: fixed;
-      top: 65px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(47, 62, 70, 0.2);
-      backdrop-filter: blur(2px);
-      z-index: 80;
-      display: none;
-      opacity: 0;
-      transition: opacity var(--transition-normal);
+      position: fixed; top: 65px; left: 0; right: 0; bottom: 0;
+      background-color: rgba(47, 62, 70, 0.2); backdrop-filter: blur(2px);
+      z-index: 80; display: none; opacity: 0; transition: opacity var(--transition-normal);
     }
+    .sidebar-overlay.open { display: block; opacity: 1; }
 
-    .sidebar-overlay.open {
-      display: block;
-      opacity: 1;
-    }
+    /* LAYOUT */
+    .main-wrapper { margin-top: 65px; margin-left: 0; transition: margin-left var(--transition-normal); display: flex; flex-direction: column; align-items: center; width: 100%; min-height: calc(100vh - 65px); }
+    .content-container { width: 100%; max-width: var(--content-max-width); padding: 40px 24px 120px; display: flex; flex-direction: column; gap: 80px; }
+    .course-section { opacity: 1; transform: translateY(0); transition: opacity var(--transition-slow), transform var(--transition-slow); }
+    .course-section.hidden-section { display: none; opacity: 0; transform: translateY(20px); }
 
-    /* CONTENEDOR PRINCIPAL */
-    .main-wrapper {
-      margin-top: 65px;
-      margin-left: 0;
-      transition: margin-left var(--transition-normal);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      min-height: calc(100vh - 65px);
-    }
+    /* SECTION HEADERS */
+    .section-header { border-bottom: 2px solid var(--border-color); padding-bottom: 24px; margin-bottom: 40px; }
+    .section-meta { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .section-title { font-size: 2.2rem; font-weight: 800; line-height: 1.25; color: var(--text-main); }
+    .section-intro-text { font-size: 1.15rem; line-height: 1.7; color: var(--text-main); margin-bottom: 32px; }
 
-    /* CONTENEDOR CENTRAL LIMITADO A 800PX */
-    .content-container {
-      width: 100%;
-      max-width: var(--content-max-width);
-      padding: 40px 24px 120px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 80px; /* Amplio espaciado entre bloques */
-    }
+    /* COVER CARD */
+    .cover-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 48px 40px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; margin-top: 20px; }
+    .cover-card::before { content: ""; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background-color: var(--secondary); }
+    .cover-card-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .cover-text { flex: 1; }
+    .cover-illustration-container { width: 240px; height: 240px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .cover-category { font-size: 0.85rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
+    .cover-title { font-size: 2.6rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: var(--text-main); }
+    .cover-description { font-size: 1.2rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 36px; }
 
-    /* SECCIÓN DE CURSO (BLOQUE CONTENEDOR) */
-    .course-section {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity var(--transition-slow), transform var(--transition-slow);
-    }
+    /* BUTTONS */
+    .btn-primary { background-color: var(--accent); color: white; border: none; padding: 16px 36px; font-size: 1.05rem; font-weight: 700; border-radius: var(--radius-sm); cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25); transition: all var(--transition-fast); text-decoration: none; }
+    .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35); }
+    .btn-primary:active { transform: translateY(0); }
 
-    .course-section.hidden-section {
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-    }
+    /* ACCORDION */
+    .accordion-container { display: flex; flex-direction: column; gap: 12px; margin: 40px 0; }
+    .accordion-item { border: 1px solid var(--border-color); border-radius: var(--radius-md); background-color: var(--card-bg); overflow: hidden; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
+    .accordion-item:hover { border-color: rgba(255, 107, 53, 0.3); box-shadow: var(--shadow-sm); }
+    .accordion-header { width: 100%; background: none; border: none; display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; text-align: left; font-family: inherit; }
+    .accordion-header-content { display: flex; align-items: center; gap: 16px; }
+    .accordion-badge { width: 32px; height: 32px; background-color: var(--secondary-light); border: 1.5px solid var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .accordion-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+    .accordion-icon { width: 24px; height: 24px; color: var(--text-muted); transition: transform var(--transition-normal); }
+    .accordion-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--transition-normal); }
+    .accordion-content-inner { overflow: hidden; padding: 0 24px; color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+    .accordion-item.active { border-color: var(--accent); box-shadow: var(--shadow-md); }
+    .accordion-item.active .accordion-content { grid-template-rows: 1fr; }
+    .accordion-item.active .accordion-content-inner { padding-bottom: 24px; }
+    .accordion-item.active .accordion-icon { transform: rotate(180deg); color: var(--accent); }
 
-    /* TÍTULO Y SUBTÍTULO DEL MÓDULO */
-    .section-header {
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 24px;
-      margin-bottom: 40px;
-    }
+    /* FLASHCARDS */
+    .flashcards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0; }
+    @media (max-width: 600px) { .flashcards-grid { grid-template-columns: 1fr; } }
+    .flashcard-container { perspective: 1000px; height: 240px; cursor: pointer; }
+    .flashcard { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform var(--transition-slow); }
+    .flashcard.flipped { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backface-visibility: hidden; border-radius: var(--radius-lg); padding: 32px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); }
+    .flashcard-front { background-color: var(--card-bg); border-bottom: 4px solid var(--secondary); }
+    .flashcard-back { background-color: #FFFDF9; transform: rotateY(180deg); border: 2px solid var(--accent); }
+    .flashcard-icon-wrapper { width: 48px; height: 48px; border-radius: 50%; background-color: rgba(255, 107, 53, 0.08); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 16px; }
+    .flashcard-front h3 { font-size: 1.3rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
+    .flashcard-hint { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 12px; }
+    .flashcard-back p { font-size: 0.95rem; line-height: 1.6; color: var(--text-main); }
 
-    .section-meta {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      line-height: 1.25;
-      color: var(--text-main);
-    }
-
-    .section-intro-text {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: var(--text-main);
-      margin-bottom: 32px;
-    }
-
-    /* COMPONENTE: PORTADA (BLOQUE 1) */
-    .cover-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 48px 40px;
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-      margin-top: 20px;
-    }
-
-    /* Detalle decorativo amarillo */
-    .cover-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 6px;
-      height: 100%;
-      background-color: var(--secondary);
-    }
-
-    .cover-category {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 16px;
-    }
-
-    .cover-title {
-      font-size: 2.6rem;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: var(--text-main);
-    }
-
-    .cover-description {
-      font-size: 1.2rem;
-      line-height: 1.65;
-      color: var(--text-muted);
-      margin-bottom: 36px;
-    }
-
-    /* BOTONES */
-    .btn-primary {
-      background-color: var(--accent);
-      color: white;
-      border: none;
-      padding: 16px 36px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
-      transition: all var(--transition-fast);
-      text-decoration: none;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-
-    /* COMPONENTE 1: ACORDEÓN INTERACTIVO */
-    .accordion-container {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin: 40px 0;
-    }
-
-    .accordion-item {
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      background-color: var(--card-bg);
-      overflow: hidden;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    .accordion-item:hover {
-      border-color: rgba(255, 107, 53, 0.3);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .accordion-header {
-      width: 100%;
-      background: none;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      cursor: pointer;
-      text-align: left;
-      font-family: inherit;
-    }
-
-    .accordion-header-content {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .accordion-badge {
-      width: 32px;
-      height: 32px;
-      background-color: var(--secondary-light);
-      border: 1.5px solid var(--secondary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .accordion-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .accordion-icon {
-      width: 24px;
-      height: 24px;
-      color: var(--text-muted);
-      transition: transform var(--transition-normal);
-    }
-
-    /* Truco moderno de CSS Grid para animar altura desde 0 a auto */
-    .accordion-content {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows var(--transition-normal);
-    }
-
-    .accordion-content-inner {
-      overflow: hidden;
-      padding: 0 24px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    /* Estado Activo de Acordeón */
-    .accordion-item.active {
-      border-color: var(--accent);
-      box-shadow: var(--shadow-md);
-    }
-
-    .accordion-item.active .accordion-content {
-      grid-template-rows: 1fr;
-    }
-
-    .accordion-item.active .accordion-content-inner {
-      padding-bottom: 24px;
-    }
-
-    .accordion-item.active .accordion-icon {
-      transform: rotate(180deg);
-      color: var(--accent);
-    }
-
-    /* COMPONENTE 2: FLASHCARDS (TARJETAS GIRATORIAS 3D) */
-    .flashcards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin: 40px 0;
-    }
-
-    @media (max-width: 600px) {
-      .flashcards-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .flashcard-container {
-      perspective: 1000px;
-      height: 240px;
-      cursor: pointer;
-    }
-
-    .flashcard {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform var(--transition-slow);
-    }
-
-    /* Al añadir la clase flipped, la tarjeta rota */
-    .flashcard.flipped {
-      transform: rotateY(180deg);
-    }
-
-    .flashcard-front, .flashcard-back {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: var(--radius-lg);
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-    }
-
-    .flashcard-front {
-      background-color: var(--card-bg);
-      border-bottom: 4px solid var(--secondary);
-    }
-
-    .flashcard-back {
-      background-color: #FFFDF9;
-      transform: rotateY(180deg);
-      border: 2px solid var(--accent);
-    }
-
-    .flashcard-icon-wrapper {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background-color: rgba(255, 107, 53, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
-    .flashcard-front h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 8px;
-    }
-
-    .flashcard-hint {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-top: 12px;
-    }
-
-    .flashcard-back p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-main);
-    }
-
-    /* BOTONES DE CONTINUAR (Separador Horizontal + Botón) */
-    .continue-divider {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 80px 0;
-    }
-
-    .continue-divider::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background-color: var(--border-color);
-      z-index: 1;
-    }
-
+    /* CONTINUE DIVIDER */
+    .continue-divider { position: relative; display: flex; align-items: center; justify-content: center; margin: 80px 0; }
+    .continue-divider::before { content: ""; position: absolute; left: 0; right: 0; height: 1px; background-color: var(--border-color); z-index: 1; }
     .continue-btn {
-      position: relative;
-      z-index: 2;
-      background-color: var(--accent);
-      color: white;
-      border: none;
-      padding: 14px 36px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      border-radius: 9999px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-      transition: all var(--transition-fast);
+      position: relative; z-index: 2; background-color: var(--accent); color: white; border: none;
+      padding: 14px 36px; font-size: 1.05rem; font-weight: 700; border-radius: 9999px;
+      cursor: pointer; display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3); transition: all var(--transition-fast);
     }
+    .continue-btn:hover:not(:disabled) { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255, 107, 53, 0.4); }
+    .continue-btn:disabled { background-color: #D3D8DC; color: #8C99A0; cursor: not-allowed; box-shadow: none; transform: none; }
+    .continue-btn svg { width: 20px; height: 20px; }
 
-    .continue-btn:hover:not(:disabled) {
-      background-color: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(255, 107, 53, 0.4);
-    }
+    /* QUOTE */
+    .quote-box { border-left: 4px solid var(--accent); background-color: var(--secondary-light); padding: 32px 40px; border-radius: 0 var(--radius-lg) var(--radius-lg) 0; margin: 40px 0; }
+    .quote-text { font-size: 1.3rem; font-style: italic; line-height: 1.6; color: var(--text-main); margin-bottom: 12px; font-weight: 500; }
+    .quote-author { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
 
-    .continue-btn:active:not(:disabled) {
-      transform: translateY(0);
-    }
+    /* COMPARISON GRID */
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0; }
+    @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comparison-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .comparison-card.negative::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background-color: var(--error); }
+    .comparison-card.positive::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background-color: var(--success); }
+    .comparison-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .negative .comparison-label { color: var(--error); }
+    .positive .comparison-label { color: var(--success); }
+    .comparison-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--text-main); }
+    .comparison-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .comparison-list-item { font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); position: relative; padding-left: 24px; }
+    .comparison-list-item svg { position: absolute; left: 0; top: 2px; width: 16px; height: 16px; }
+    .negative .comparison-list-item svg { color: var(--error); }
+    .positive .comparison-list-item svg { color: var(--success); }
 
-    /* Estado Deshabilitado */
-    .continue-btn:disabled {
-      background-color: #D3D8DC;
-      color: #8C99A0;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
+    /* TABS */
+    .tabs-container { margin: 40px 0; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background-color: var(--card-bg); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .tabs-header { display: flex; border-bottom: 1px solid var(--border-color); background-color: #FAF8F2; }
+    .tab-btn { flex: 1; padding: 16px 20px; background: none; border: none; font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all var(--transition-fast); text-align: center; border-bottom: 3px solid transparent; }
+    .tab-btn:hover { color: var(--accent); background-color: rgba(255, 107, 53, 0.02); }
+    .tab-btn.active-tab { color: var(--accent); border-bottom-color: var(--accent); background-color: white; }
+    .tabs-content { padding: 32px; }
+    .tab-panel { display: none; animation: fadeIn 0.4s ease; }
+    .tab-panel.active-panel { display: block; }
+    .tab-panel-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; color: var(--text-main); }
+    .tab-panel-text { font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); }
 
-    .continue-btn svg {
-      width: 20px;
-      height: 20px;
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* COMPONENTE CITA DESTACADA (BLOQUE 3) */
-    .quote-box {
-      border-left: 4px solid var(--accent);
-      background-color: var(--secondary-light);
-      padding: 32px 40px;
-      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-      margin: 40px 0;
-      position: relative;
-    }
+    /* KNOWLEDGE CHECK */
+    .knowledge-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-md); margin: 40px 0; }
+    .kc-header { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .kc-question { font-size: 1.2rem; font-weight: 700; line-height: 1.5; margin-bottom: 24px; color: var(--text-main); }
+    .kc-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .kc-option-label { display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px; border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; font-size: 0.95rem; line-height: 1.5; font-weight: 500; transition: all var(--transition-fast); position: relative; }
+    .kc-option-label input { position: absolute; opacity: 0; cursor: pointer; }
+    .kc-radio-custom { width: 20px; height: 20px; border: 2px solid var(--border-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: all var(--transition-fast); position: relative; }
+    .kc-radio-custom::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background-color: var(--accent); transform: scale(0); transition: transform var(--transition-fast); }
+    .kc-option-label:hover { border-color: var(--secondary); background-color: rgba(247, 183, 51, 0.03); }
+    .kc-option-label.checked { border-color: var(--accent); background-color: rgba(255, 107, 53, 0.03); }
+    .kc-option-label.checked .kc-radio-custom { border-color: var(--accent); }
+    .kc-option-label.checked .kc-radio-custom::after { transform: scale(1); }
+    .kc-option-label.correct-selected { border-color: var(--success) !important; background-color: var(--success-light) !important; }
+    .kc-option-label.correct-selected .kc-radio-custom { border-color: var(--success) !important; }
+    .kc-option-label.correct-selected .kc-radio-custom::after { background-color: var(--success) !important; transform: scale(1); }
+    .kc-option-label.incorrect-selected { border-color: var(--error) !important; background-color: var(--error-light) !important; }
+    .kc-option-label.incorrect-selected .kc-radio-custom { border-color: var(--error) !important; }
+    .kc-option-label.incorrect-selected .kc-radio-custom::after { background-color: var(--error) !important; transform: scale(1); }
+    .kc-feedback-box { border-radius: var(--radius-md); padding: 20px 24px; font-size: 0.95rem; line-height: 1.5; display: none; animation: fadeIn var(--transition-normal) ease; margin-top: 16px; }
+    .kc-feedback-box.correct { border: 1px solid var(--success); background-color: var(--success-light); color: var(--text-main); }
+    .kc-feedback-box.incorrect { border: 1px solid var(--error); background-color: var(--error-light); color: var(--text-main); }
+    .feedback-title { font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .kc-feedback-box.correct .feedback-title { color: var(--success); }
+    .kc-feedback-box.incorrect .feedback-title { color: var(--error); }
 
-    .quote-text {
-      font-size: 1.3rem;
-      font-style: italic;
-      line-height: 1.6;
-      color: var(--text-main);
-      margin-bottom: 12px;
-      font-weight: 500;
-    }
+    /* CHECKLIST */
+    .checklist-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-md); margin: 40px 0; }
+    .checklist-items { display: flex; flex-direction: column; gap: 16px; }
+    .checklist-item { display: flex; align-items: flex-start; gap: 16px; cursor: pointer; font-size: 1rem; line-height: 1.5; font-weight: 500; padding: 10px; border-radius: var(--radius-sm); transition: background-color var(--transition-fast); }
+    .checklist-item:hover { background-color: rgba(47, 62, 70, 0.02); }
+    .checklist-item input { position: absolute; opacity: 0; cursor: pointer; }
+    .checklist-check-custom { width: 24px; height: 24px; border: 2px solid var(--border-color); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--transition-fast); color: white; }
+    .checklist-check-custom svg { width: 16px; height: 16px; stroke-width: 3px; transform: scale(0); transition: transform var(--transition-fast); }
+    .checklist-item.checked .checklist-check-custom { background-color: var(--accent); border-color: var(--accent); }
+    .checklist-item.checked .checklist-check-custom svg { transform: scale(1); }
+    .checklist-item.checked .checklist-text { text-decoration: line-through; color: var(--text-muted); opacity: 0.6; }
+    .checklist-text { transition: all var(--transition-fast); }
 
-    .quote-author {
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-    }
+    /* COURSE COMPLETED */
+    .course-completed-card { background-color: #FFFDF9; border: 2px dashed var(--accent); border-radius: var(--radius-lg); padding: 40px 32px; text-align: center; box-shadow: var(--shadow-lg); margin-top: 40px; position: relative; display: none; animation: scaleUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; overflow: hidden; }
+    @keyframes scaleUp { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .completed-icon { font-size: 3rem; margin-bottom: 16px; display: inline-block; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .completed-title { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 12px; }
+    .completed-desc { font-size: 1.05rem; line-height: 1.6; color: var(--text-main); max-width: 500px; margin: 0 auto; }
+    .confetti-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; }
+    .confetti-particle { position: absolute; top: -20px; animation: confettiFall linear forwards; }
+    @keyframes confettiFall { 0% { top: -20px; transform: translateX(0) rotate(0deg); opacity: 1; } 100% { top: 100%; transform: translateX(80px) rotate(360deg); opacity: 0; } }
 
-    /* COMPONENTE 3: COMPARATIVA LADO A LADO */
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin: 40px 0;
-    }
+    /* ILLUSTRATIONS */
+    .section-illustration-wrapper { display: flex; justify-content: center; margin-bottom: 24px; }
 
+    /* SIDEBAR STATE */
+    .compact-only-show { display: none !important; }
+    .compact-only-hide { display: flex !important; }
+    body.sb-state-compact .compact-only-show { display: flex !important; }
+    body.sb-state-compact .compact-only-hide { display: none !important; }
+    .sidebar-action-btn:hover { background-color: rgba(47, 62, 70, 0.08); color: var(--accent) !important; }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .comparison-grid {
-        grid-template-columns: 1fr;
-      }
+      .cover-card-inner { flex-direction: column-reverse; text-align: center; gap: 24px; }
+      .cover-illustration-container { width: 180px; height: 180px; }
+      .btn-primary { align-self: center; }
+      .cover-title { font-size: 1.8rem !important; }
+      .cover-description { font-size: 1rem !important; }
+      .section-title { font-size: 1.5rem !important; }
+      .section-intro-text { font-size: 1rem !important; }
+      .content-container { padding: 24px 16px 80px !important; gap: 48px !important; }
+      .sidebar { width: 280px !important; left: -280px; }
+      .sidebar.open { left: 0 !important; }
+      .sidebar-overlay.open { display: block !important; }
+      .cover-card { padding: 32px 20px !important; }
+      .quote-box { padding: 20px 24px !important; }
+      .quote-text { font-size: 1.1rem !important; }
+      .kc-question { font-size: 1.1rem !important; }
+      .kc-option-label { padding: 12px 16px !important; font-size: 0.85rem !important; }
+      .fixed-header { padding: 0 16px !important; height: 56px !important; }
+      .course-mini-title { max-width: 200px; font-size: 0.85rem !important; }
+      .knowledge-card { padding: 24px 20px !important; }
+      .checklist-card { padding: 24px 20px !important; }
+      .tabs-content { padding: 24px 20px !important; }
+      .tab-btn { padding: 12px 10px !important; font-size: 0.8rem !important; }
+      .accordion-header { padding: 16px 18px !important; }
+      .accordion-title { font-size: 0.95rem !important; }
+      .flashcard-container { height: 200px !important; }
+      .comparison-card { padding: 24px 20px !important; }
+      .continue-btn { padding: 12px 28px !important; font-size: 0.9rem !important; }
+      .main-wrapper { margin-top: 56px !important; min-height: calc(100vh - 56px) !important; }
+      .sidebar-overlay { top: 56px !important; }
+    }
+    @media (max-width: 480px) {
+      .cover-card { padding: 24px 16px !important; }
+      .cover-title { font-size: 1.3rem !important; }
+      .cover-illustration-container { width: 130px !important; height: 130px !important; }
+      .content-container { padding: 16px 12px 48px !important; gap: 32px !important; }
+      .section-title { font-size: 1.2rem !important; }
+      .sidebar { width: 260px !important; left: -260px !important; }
+      .course-mini-title { max-width: 140px !important; font-size: 0.75rem !important; }
+      .flashcards-grid { gap: 16px !important; }
+      .flashcard-container { height: 180px !important; }
+      .comparison-grid { gap: 16px !important; }
+      .continue-divider { margin: 48px 0 !important; }
     }
-
-    .comparison-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Decoraciones arriba de las tarjetas comparativas */
-    .comparison-card.negative::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background-color: var(--error);
-    }
-
-    .comparison-card.positive::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background-color: var(--success);
-    }
-
-    .comparison-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-    }
-
-    .negative .comparison-label {
-      color: var(--error);
-    }
-
-    .positive .comparison-label {
-      color: var(--success);
-    }
-
-    .comparison-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text-main);
-    }
-
-    .comparison-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .comparison-list-item {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: var(--text-muted);
-      position: relative;
-      padding-left: 24px;
-    }
-
-    .comparison-list-item svg {
-      position: absolute;
-      left: 0;
-      top: 2px;
-      width: 16px;
-      height: 16px;
-    }
-
-    .negative .comparison-list-item svg {
-      color: var(--error);
-    }
-
-    .positive .comparison-list-item svg {
-      color: var(--success);
-    }
-
-    /* COMPONENTE 4: PESTAÑAS HORIZONTALES (TABS) */
-    .tabs-container {
-      margin: 40px 0;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      background-color: var(--card-bg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .tabs-header {
-      display: flex;
-      border-bottom: 1px solid var(--border-color);
-      background-color: #FAF8F2;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 16px 20px;
-      background: none;
-      border: none;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      text-align: center;
-      border-bottom: 3px solid transparent;
-    }
-
-    .tab-btn:hover {
-      color: var(--accent);
-      background-color: rgba(255, 107, 53, 0.02);
-    }
-
-    .tab-btn.active-tab {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-      background-color: white;
-    }
-
-    .tabs-content {
-      padding: 32px;
-    }
-
-    .tab-panel {
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .tab-panel.active-panel {
-      display: block;
-    }
-
-    .tab-panel-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-
-    .tab-panel-text {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* COMPONENTE 5: KNOWLEDGE CHECK (BLOQUE 4) */
-    .knowledge-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-      box-shadow: var(--shadow-md);
-      margin: 40px 0;
-    }
-
-    .kc-header {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-
-    .kc-question {
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.5;
-      margin-bottom: 24px;
-      color: var(--text-main);
-    }
-
-    .kc-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .kc-option-label {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 16px 20px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      font-weight: 500;
-      transition: all var(--transition-fast);
-      position: relative;
-    }
-
-    /* Ocultar input nativo */
-    .kc-option-label input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-    }
-
-    /* Radio circular personalizado */
-    .kc-radio-custom {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--border-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-      transition: all var(--transition-fast);
-      position: relative;
-    }
-
-    .kc-radio-custom::after {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: var(--accent);
-      transform: scale(0);
-      transition: transform var(--transition-fast);
-    }
-
-    /* Hover */
-    .kc-option-label:hover {
-      border-color: var(--secondary);
-      background-color: rgba(247, 183, 51, 0.03);
-    }
-
-    /* Checked */
-    .kc-option-label.checked {
-      border-color: var(--accent);
-      background-color: rgba(255, 107, 53, 0.03);
-    }
-
-    .kc-option-label.checked .kc-radio-custom {
-      border-color: var(--accent);
-    }
-
-    .kc-option-label.checked .kc-radio-custom::after {
-      transform: scale(1);
-    }
-
-    /* CORRECTO / INCORRECTO EN RESPUESTAS */
-    .kc-option-label.correct-selected {
-      border-color: var(--success) !important;
-      background-color: var(--success-light) !important;
-    }
-    .kc-option-label.correct-selected .kc-radio-custom {
-      border-color: var(--success) !important;
-    }
-    .kc-option-label.correct-selected .kc-radio-custom::after {
-      background-color: var(--success) !important;
-      transform: scale(1);
-    }
-
-    .kc-option-label.incorrect-selected {
-      border-color: var(--error) !important;
-      background-color: var(--error-light) !important;
-    }
-    .kc-option-label.incorrect-selected .kc-radio-custom {
-      border-color: var(--error) !important;
-    }
-    .kc-option-label.incorrect-selected .kc-radio-custom::after {
-      background-color: var(--error) !important;
-      transform: scale(1);
-    }
-
-    /* Caja de Feedback */
-    .kc-feedback-box {
-      border-radius: var(--radius-md);
-      padding: 20px 24px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      display: none;
-      animation: fadeIn var(--transition-normal) ease;
-      margin-top: 16px;
-    }
-
-    .kc-feedback-box.correct {
-      border: 1px solid var(--success);
-      background-color: var(--success-light);
-      color: var(--text-main);
-    }
-
-    .kc-feedback-box.incorrect {
-      border: 1px solid var(--error);
-      background-color: var(--error-light);
-      color: var(--text-main);
-    }
-
-    /* Mostrar/Ocultar botones en base al estado compacto */
-    .compact-only-show {
-      display: none !important;
-    }
-    .compact-only-hide {
-      display: flex !important;
-    }
-    
-    body.sb-state-compact .compact-only-show {
-      display: flex !important;
-    }
-    body.sb-state-compact .compact-only-hide {
-      display: none !important;
-    }
-    
-    .sidebar-action-btn:hover {
-      background-color: rgba(47, 62, 70, 0.08);
-      color: var(--accent) !important;
-    }
-
-    .feedback-title {
-      font-weight: 700;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .kc-feedback-box.correct .feedback-title {
-      color: var(--success);
-    }
-
-    .kc-feedback-box.incorrect .feedback-title {
-      color: var(--error);
-    }
-
-    /* COMPONENTE 6: CHECKLIST INTERACTIVA (BLOQUE 5) */
-    .checklist-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-      box-shadow: var(--shadow-md);
-      margin: 40px 0;
-      position: relative;
-    }
-
-    .checklist-items {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .checklist-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      cursor: pointer;
-      font-size: 1rem;
-      line-height: 1.5;
-      font-weight: 500;
-      padding: 10px;
-      border-radius: var(--radius-sm);
-      transition: background-color var(--transition-fast);
-    }
-
-    .checklist-item:hover {
-      background-color: rgba(47, 62, 70, 0.02);
-    }
-
-    .checklist-item input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-    }
-
-    /* Checkbox personalizado */
-    .checklist-check-custom {
-      width: 24px;
-      height: 24px;
-      border: 2px solid var(--border-color);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all var(--transition-fast);
-      color: white;
-    }
-
-    .checklist-check-custom svg {
-      width: 16px;
-      height: 16px;
-      stroke-width: 3px;
-      transform: scale(0);
-      transition: transform var(--transition-fast);
-    }
-
-    /* Checked */
-    .checklist-item.checked .checklist-check-custom {
-      background-color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .checklist-item.checked .checklist-check-custom svg {
-      transform: scale(1);
-    }
-
-    .checklist-item.checked .checklist-text {
-      text-decoration: line-through;
-      color: var(--text-muted);
-      opacity: 0.6;
-    }
-
-    .checklist-text {
-      transition: all var(--transition-fast);
-    }
-
-    /* MENSAJE DE CURSO COMPLETADO */
-    .course-completed-card {
-      background-color: #FFFDF9;
-      border: 2px dashed var(--accent);
-      border-radius: var(--radius-lg);
-      padding: 40px 32px;
-      text-align: center;
-      box-shadow: var(--shadow-lg);
-      margin-top: 40px;
-      position: relative;
-      display: none;
-      animation: scaleUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      overflow: hidden;
-    }
-
-    @keyframes scaleUp {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .completed-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      display: inline-block;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .completed-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .completed-desc {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: var(--text-main);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    /* PARTÍCULAS CONFETTI (CSS) */
-    .confetti-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .confetti-particle {
-      position: absolute;
-      top: -20px;
-      animation: confettiFall linear forwards;
-    }
-
-    @keyframes confettiFall {
-      0% {
-        top: -20px;
-        transform: translateX(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        top: 100%;
-        transform: translateX(80px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Ilustraciones y Portada Responsiva */
-    .cover-card-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-    }
-    .cover-text {
-      flex: 1;
-    }
-    .cover-illustration-container {
-      width: 240px;
-      height: 240px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .section-illustration-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-    .section-illustration {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      box-shadow: var(--shadow-sm);
-    }
-    
-    @media (max-width: 768px) {
-      .cover-card-inner {
-        flex-direction: column-reverse;
-        text-align: center;
-        gap: 24px;
-      }
-      .cover-illustration-container {
-        width: 180px;
-        height: 180px;
-      }
-      .btn-primary {
-        align-self: center;
-      }
-      .cover-title {
-        font-size: 1.8rem !important;
-      }
-      .cover-description {
-        font-size: 1rem !important;
-      }
-      .section-title {
-        font-size: 1.5rem !important;
-      }
-      .section-intro-text {
-        font-size: 1rem !important;
-      }
-      .content-container {
-        padding: 24px 16px 80px 16px !important;
-        gap: 48px !important;
-      }
-      .sidebar {
-        width: 280px !important;
-        left: -280px;
-      }
-      .quote-box {
-        padding: 20px 24px !important;
-      }
-      .quote-text {
-        font-size: 1.1rem !important;
-      }
-      .kc-question {
-        font-size: 1.1rem !important;
-      }
-      .kc-option-label {
-        padding: 12px 16px !important;
-        font-size: 0.85rem !important;
-      }
-      .fixed-header {
-        padding: 0 16px !important;
-      }
-      .course-mini-title {
-        max-width: 200px;
-        font-size: 0.85rem !important;
-      }
-    }
-
-    /* RESPONSIVIDAD DEL LAYOUT PRINCIPAL (DESKTOP) */
     @media (min-width: 992px) {
-      .sidebar {
-        left: 0;
-      }
-
-      /* ESTADO EXPANDIDO (DEFAULT) */
-      body.sb-state-expanded .sidebar {
-        width: 320px;
-        left: 0;
-      }
-      body.sb-state-expanded .main-wrapper {
-        margin-left: 320px;
-      }
-      
-      /* ESTADO COMPACTO (PEQUEÑO) */
-      body.sb-state-compact .sidebar {
-        width: 75px;
-        left: 0;
-        padding: 24px 8px;
-      }
-      body.sb-state-compact .main-wrapper {
-        margin-left: 75px;
-      }
-      body.sb-state-compact .sidebar-item {
-        padding: 12px;
-        justify-content: center;
-        gap: 0;
-      }
-      body.sb-state-compact .sidebar-item span:not(.status-icon) {
-        display: none;
-      }
-      body.sb-state-compact .sidebar-title-text {
-        display: none;
-      }
-      body.sb-state-compact .sidebar-header-actions {
-        justify-content: center !important;
-        padding: 0 !important;
-      }
-      
-      /* ESTADO OCULTO */
-      body.sb-state-hidden .sidebar {
-        left: -320px;
-      }
-      body.sb-state-hidden .main-wrapper {
-        margin-left: 0;
-      }
+      .sidebar { left: 0; }
+      body.sb-state-expanded .sidebar { width: 320px; left: 0; }
+      body.sb-state-expanded .main-wrapper { margin-left: 320px; }
+      body.sb-state-compact .sidebar { width: 75px; left: 0; padding: 24px 8px; }
+      body.sb-state-compact .main-wrapper { margin-left: 75px; }
+      body.sb-state-compact .sidebar-item { padding: 12px; justify-content: center; gap: 0; }
+      body.sb-state-compact .sidebar-item span:not(.status-icon) { display: none; }
+      body.sb-state-compact .sidebar-title-text { display: none; }
+      body.sb-state-hidden .sidebar { left: -320px; }
+      body.sb-state-hidden .main-wrapper { margin-left: 0; }
+    }
+    @media (hover: none) {
+      .sidebar-item:hover { background-color: transparent !important; color: var(--text-main) !important; }
+      .kc-option-label:hover { border-color: var(--border-color) !important; background-color: transparent !important; }
+      .accordion-item:hover { border-color: var(--border-color) !important; box-shadow: none !important; }
+      .btn-primary:hover { transform: none !important; }
+      .continue-btn:hover:not(:disabled) { transform: none !important; }
     }
   </style>
 </head>
 <body class="sb-state-expanded">
 
-  <!-- HEADER FIJO -->
+  <!-- HEADER -->
   <header class="fixed-header">
     <div class="header-left">
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación">
-        <!-- SVG Hamburger -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
       <span class="course-mini-title">Gamificación: el arte de diseñar experiencias</span>
     </div>
     <div class="header-right">
       <span class="progress-text" id="headerProgressText">10% completado</span>
     </div>
-    
-    <!-- Barra de progreso -->
     <div class="progress-container">
       <div class="progress-bar" id="headerProgressBar"></div>
     </div>
   </header>
 
-  <!-- OVERLAY PARA MOVIL -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- SIDEBAR LATERAL -->
+  <!-- SIDEBAR -->
   <nav class="sidebar" id="sidebar">
-    <div class="sidebar-header-actions" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 0 8px;">
-      <h2 class="sidebar-title-text" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Contenido</h2>
-      <div class="sidebar-control-buttons" style="display: flex; gap: 6px;">
-        <!-- Botón Compactar -->
-        <button class="sidebar-action-btn compact-only-hide" onclick="setSidebarState('compact')" title="Modo compacto" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: background-color var(--transition-fast);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><path d="M16 15l-3-3 3-3"></path></svg>
+    <div class="sidebar-header-actions" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:0 8px;">
+      <h2 class="sidebar-title-text" style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);">Contenido</h2>
+      <div style="display:flex;gap:6px;">
+        <button class="sidebar-action-btn compact-only-hide" onclick="setSidebarState('compact')" title="Modo compacto" style="background:none;border:none;color:var(--text-muted);cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><path d="M16 15l-3-3 3-3"/></svg>
         </button>
-        <!-- Botón Expandir (solo visible en modo compacto) -->
-        <button class="sidebar-action-btn compact-only-show" onclick="setSidebarState('expanded')" title="Modo expandido" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: background-color var(--transition-fast);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><path d="M13 9l3 3-3 3"></path></svg>
+        <button class="sidebar-action-btn compact-only-show" onclick="setSidebarState('expanded')" title="Modo expandido" style="background:none;border:none;color:var(--text-muted);cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><path d="M13 9l3 3-3 3"/></svg>
         </button>
-        <!-- Botón Ocultar -->
-        <button class="sidebar-action-btn" onclick="setSidebarState('hidden')" title="Ocultar barra" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: background-color var(--transition-fast);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <button class="sidebar-action-btn" onclick="setSidebarState('hidden')" title="Ocultar" style="background:none;border:none;color:var(--text-muted);cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
     </div>
-    
     <ul class="sidebar-menu">
-      <li>
-        <a class="sidebar-item active-nav" id="sb-portada" onclick="navigate('portada')">
-          <span class="status-icon" id="icon-portada">
-            <!-- Circulo activo -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>
-          </span>
-          <span>Portada del curso</span>
-        </a>
-      </li>
-      <li>
-        <a class="sidebar-item locked" id="sb-m1" onclick="navigate('modulo-1')">
-          <span class="status-icon" id="icon-m1">
-            <!-- Candado -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          </span>
-          <span>Módulo 1: el cerebro jugador</span>
-        </a>
-      </li>
-      <li>
-        <a class="sidebar-item locked" id="sb-m2" onclick="navigate('modulo-2')">
-          <span class="status-icon" id="icon-m2">
-            <!-- Candado -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          </span>
-          <span>Módulo 2: de puntos a experiencias</span>
-        </a>
-      </li>
-      <li>
-        <a class="sidebar-item locked" id="sb-m3" onclick="navigate('modulo-3')">
-          <span class="status-icon" id="icon-m3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          </span>
-          <span>Módulo 3: el loop de retroalimentación</span>
-        </a>
-      </li>
-      <li>
-        <a class="sidebar-item locked" id="sb-conclusion" onclick="navigate('conclusion')">
-          <span class="status-icon" id="icon-conclusion">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          </span>
-          <span>Conclusión y checklist</span>
-        </a>
-      </li>
+      <li><a class="sidebar-item active-nav" id="sb-portada" onclick="navigate('portada')"><span class="status-icon" id="icon-portada"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></span><span>Portada del curso</span></a></li>
+      <li><a class="sidebar-item locked" id="sb-m1" onclick="navigate('modulo-1')"><span class="status-icon" id="icon-m1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span>Módulo 1: el cerebro jugador</span></a></li>
+      <li><a class="sidebar-item locked" id="sb-m2" onclick="navigate('modulo-2')"><span class="status-icon" id="icon-m2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span>Módulo 2: de puntos a experiencias</span></a></li>
+      <li><a class="sidebar-item locked" id="sb-m3" onclick="navigate('modulo-3')"><span class="status-icon" id="icon-m3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span>Módulo 3: el loop de retroalimentación</span></a></li>
+      <li><a class="sidebar-item locked" id="sb-conclusion" onclick="navigate('conclusion')"><span class="status-icon" id="icon-conclusion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span>Conclusión y checklist</span></a></li>
     </ul>
   </nav>
 
-  <!-- CUERPO PRINCIPAL -->
+  <!-- MAIN CONTENT -->
   <main class="main-wrapper">
     <div class="content-container">
 
-      <!-- =========================================
-           [BLOQUE 1: PORTADA DEL CURSO]
-           ========================================= -->
+      <!-- ===== PORTADA ===== -->
       <section id="portada" class="course-section">
         <div class="cover-card">
-          <div class="cover-category">Diseño de Experiencias</div>
-          <h1 class="cover-title">Gamificación: El Arte de Diseñar Experiencias Digitales Atrapantes</h1>
-          <p class="cover-description">
-            Descubre cómo transformar interfaces estáticas en entornos dinámicos utilizando la psicología del juego, el diseño de motivadores y ciclos de retroalimentación efectivos.
-          </p>
-          <button class="btn-primary" onclick="startCourse()">
-            <span>Iniciar Curso</span>
-            <!-- Icono Flecha Abajo -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </button>
+          <div class="cover-card-inner">
+            <div class="cover-text">
+              <div class="cover-category">Diseño de experiencias</div>
+              <h1 class="cover-title">Gamificación: el arte de diseñar experiencias digitales atrapantes</h1>
+              <p class="cover-description">Descubre cómo transformar interfaces estáticas en entornos dinámicos utilizando la psicología del juego, el diseño de motivadores y ciclos de retroalimentación efectivos.</p>
+              <button class="btn-primary" onclick="startCourse()">
+                <span>Iniciar curso</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+              </button>
+            </div>
+            <div class="cover-illustration-container">
+              <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                <circle cx="120" cy="120" r="110" fill="var(--secondary-light)" stroke="var(--secondary)" stroke-width="2" stroke-dasharray="6 4"/>
+                <circle cx="120" cy="120" r="85" fill="rgba(255,107,53,0.05)" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 6"/>
+                <circle cx="120" cy="100" r="22" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2.5"/>
+                <circle cx="120" cy="96" r="4" fill="var(--accent)"/>
+                <path d="M108 108 Q120 118 132 108" stroke="var(--accent)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M98 130 Q120 145 142 130" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <path d="M98 130 L95 170 Q120 178 145 170 L142 130" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2"/>
+                <path d="M98 135 L75 155" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M142 135 L165 155" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="70" cy="150" r="5" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1.5"/>
+                <circle cx="170" cy="150" r="5" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1.5"/>
+                <path d="M165 145 l2 5 5-1-3 4 4 3-5 1 1 5-3-3-4 2 1-5-5-1 4-3-2-5z" fill="var(--secondary)" stroke="var(--accent-hover)" stroke-width="1"/>
+                <circle cx="60" cy="72" r="3" fill="var(--success)" opacity="0.7"/>
+                <circle cx="180" cy="80" r="3" fill="var(--success)" opacity="0.7"/>
+                <circle cx="50" cy="175" r="2.5" fill="var(--secondary)" opacity="0.6"/>
+                <circle cx="185" cy="190" r="2.5" fill="var(--secondary)" opacity="0.6"/>
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 
-
-      <!-- =========================================
-           [BLOQUE 2: MÓDULO 1 - EL CEREBRO JUGADOR]
-           ========================================= -->
-      <section id="modulo-1" class="course-section">
+      <!-- ===== MÓDULO 1 ===== -->
+      <section id="modulo-1" class="course-section hidden-section">
+        <div class="section-illustration-wrapper">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100px;height:100px;">
+            <circle cx="50" cy="50" r="48" fill="var(--secondary-light)" stroke="var(--secondary)" stroke-width="2"/>
+            <path d="M35 52c0-10 6-17 15-17s15 7 15 17c0 5-2 9-5 12 3 3 5 7 5 12 0 8-6 15-15 15s-15-7-15-15c0-5 2-9 5-12-3-3-5-7-5-12z" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2.5"/>
+            <path d="M40 55c0-3 4-5 10-5s10 2 10 5M43 62c2-2 5-3 8-3s6 1 8 3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+            <circle cx="50" cy="68" r="8" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1.5"/>
+            <path d="M46 68 l8 0 M50 64 l0 8" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="50" cy="68" r="3" fill="var(--accent)"/>
+            <circle cx="28" cy="32" r="3" fill="var(--success)" opacity="0.7"/>
+            <circle cx="72" cy="30" r="2.5" fill="var(--secondary)" opacity="0.7"/>
+          </svg>
+        </div>
         <div class="section-header">
           <div class="section-meta">Módulo 1</div>
-          <h2 class="section-title">El Cerebro Jugador (Psicología de la Motivación)</h2>
+          <h2 class="section-title">El cerebro jugador (psicología de la motivación)</h2>
         </div>
-        
-        <p class="section-intro-text">
-          Diseñar una experiencia gamificada no consiste simplemente en acumular puntos o regalar medallas de forma vacía. Para lograr un compromiso real a largo plazo, debemos comprender qué impulsa las acciones de nuestros usuarios.
-        </p>
+        <p class="section-intro-text">Diseñar una experiencia gamificada no consiste simplemente en acumular puntos o regalar medallas de forma vacía. Para lograr un compromiso real a largo plazo, debemos comprender qué impulsa las acciones de nuestros usuarios.</p>
 
-        <!-- COMPONENTE 1: ACORDEÓN INTERACTIVO (Perfiles de Jugador) -->
-        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px;">Los 4 Perfiles de Jugador (Modelo de Bartle)</h3>
-        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
-          Cada usuario reacciona de diferente manera a los estímulos de juego. Haz clic en cada perfil para explorar su motivación principal:
-        </p>
-        
+        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:16px;">Los 4 perfiles de jugador (modelo de Bartle)</h3>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.6;margin-bottom:20px;">Cada usuario reacciona de diferente manera a los estímulos de juego. Haz clic en cada perfil para explorar su motivación principal:</p>
         <div class="accordion-container">
-          <!-- Acordeón 1 -->
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-header-content">
-                <div class="accordion-badge">T</div>
-                <span class="accordion-title">Triunfadores (Achievers)</span>
-              </div>
-              <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="accordion-content">
-              <div class="accordion-content-inner">
-                Motivados por el dominio, la autosuperación y el aprendizaje. Les apasiona resolver problemas complejos, alcanzar metas difíciles y coleccionar logros significativos. Prefieren estructuras claras de niveles y métricas concretas de progreso que validen su esfuerzo personal.
-              </div>
-            </div>
-          </div>
-          
-          <!-- Acordeón 2 -->
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-header-content">
-                <div class="accordion-badge">E</div>
-                <span class="accordion-title">Exploradores (Explorers)</span>
-              </div>
-              <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="accordion-content">
-              <div class="accordion-content-inner">
-                Su principal incentivo es el descubrimiento y la curiosidad. Les gusta explorar cada rincón de un sistema, encontrar mecánicas ocultas ("Easter eggs") y tener libertad de elección. Se aburren con rutas rígidas y aprecian la autonomía sobre cómo experimentar la plataforma.
-              </div>
-            </div>
-          </div>
-          
-          <!-- Acordeón 3 -->
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-header-content">
-                <div class="accordion-badge">S</div>
-                <span class="accordion-title">Socializadores (Socializers)</span>
-              </div>
-              <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="accordion-content">
-              <div class="accordion-content-inner">
-                Ven la plataforma o el juego como un canal para conectar y colaborar con otras personas. Su motivación radica en las interacciones sociales, el trabajo en equipo, la ayuda mutua y la pertenencia a una comunidad. Disfrutan de herramientas de mensajería, gremios o proyectos colaborativos.
-              </div>
-            </div>
-          </div>
-
-          <!-- Acordeón 4 -->
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-header-content">
-                <div class="accordion-badge">C</div>
-                <span class="accordion-title">Competidores (Killers)</span>
-              </div>
-              <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="accordion-content">
-              <div class="accordion-content-inner">
-                Buscan superar y demostrar superioridad sobre los demás. Se alimentan de la competencia directa, las tablas de posiciones en tiempo real, los duelos y los rangos exclusivos. Representan un porcentaje pequeño pero muy visible y activo de los usuarios de un sistema.
-              </div>
-            </div>
-          </div>
+          <div class="accordion-item"><button class="accordion-header" onclick="toggleAccordion(this)"><div class="accordion-header-content"><div class="accordion-badge">T</div><span class="accordion-title">Triunfadores (Achievers)</span></div><svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="accordion-content"><div class="accordion-content-inner">Motivados por el dominio, la autosuperación y el aprendizaje. Les apasiona resolver problemas complejos, alcanzar metas difíciles y coleccionar logros significativos. Prefieren estructuras claras de niveles y métricas concretas de progreso que validen su esfuerzo personal.</div></div></div>
+          <div class="accordion-item"><button class="accordion-header" onclick="toggleAccordion(this)"><div class="accordion-header-content"><div class="accordion-badge">E</div><span class="accordion-title">Exploradores (Explorers)</span></div><svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="accordion-content"><div class="accordion-content-inner">Su principal incentivo es el descubrimiento y la curiosidad. Les gusta explorar cada rincón de un sistema, encontrar mecánicas ocultas ("Easter eggs") y tener libertad de elección. Se aburren con rutas rígidas y aprecian la autonomía sobre cómo experimentar la plataforma.</div></div></div>
+          <div class="accordion-item"><button class="accordion-header" onclick="toggleAccordion(this)"><div class="accordion-header-content"><div class="accordion-badge">S</div><span class="accordion-title">Socializadores (Socializers)</span></div><svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="accordion-content"><div class="accordion-content-inner">Ven la plataforma o el juego como un canal para conectar y colaborar con otras personas. Su motivación radica en las interacciones sociales, el trabajo en equipo, la ayuda mutua y la pertenencia a una comunidad. Disfrutan de herramientas de mensajería, gremios o proyectos colaborativos.</div></div></div>
+          <div class="accordion-item"><button class="accordion-header" onclick="toggleAccordion(this)"><div class="accordion-header-content"><div class="accordion-badge">C</div><span class="accordion-title">Competidores (Killers)</span></div><svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="accordion-content"><div class="accordion-content-inner">Buscan superar y demostrar superioridad sobre los demás. Se alimentan de la competencia directa, las tablas de posiciones en tiempo real, los duelos y los rangos exclusivos. Representan un porcentaje pequeño pero muy visible y activo de los usuarios de un sistema.</div></div></div>
         </div>
 
-        <!-- COMPONENTE 2: TARJETAS GIRATORIAS (FLASHCARDS) -->
-        <h3 style="font-size: 1.3rem; font-weight: 700; margin-top: 50px; margin-bottom: 8px;">Tipos de Incentivos</h3>
-        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
-          Haz clic en cada tarjeta para darle la vuelta y descubrir los dos motores fundamentales de la motivación humana:
-        </p>
-
+        <h3 style="font-size:1.3rem;font-weight:700;margin-top:50px;margin-bottom:8px;">Tipos de incentivos</h3>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.6;margin-bottom:24px;">Haz clic en cada tarjeta para darle la vuelta y descubrir los dos motores fundamentales de la motivación humana:</p>
         <div class="flashcards-grid">
-          <!-- Tarjeta 1 -->
-          <div class="flashcard-container" onclick="flipCard(this)">
-            <div class="flashcard">
-              <div class="flashcard-front">
-                <div class="flashcard-icon-wrapper">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </div>
-                <h3>Motivación Intrínseca</h3>
-                <span class="flashcard-hint">Haz clic para girar</span>
-              </div>
-              <div class="flashcard-back">
-                <p><strong>Nace del interior del usuario.</strong> El compromiso se genera por la autonomía, el propósito y el placer de realizar la actividad en sí misma.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tarjeta 2 -->
-          <div class="flashcard-container" onclick="flipCard(this)">
-            <div class="flashcard">
-              <div class="flashcard-front">
-                <div class="flashcard-icon-wrapper">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-                </div>
-                <h3>Motivación Extrínseca</h3>
-                <span class="flashcard-hint">Haz clic para girar</span>
-              </div>
-              <div class="flashcard-back">
-                <p><strong>Depende de estímulos externos.</strong> El usuario realiza la acción para obtener una recompensa (como puntos o medallas) o para evitar una penalización.</p>
-              </div>
-            </div>
-          </div>
+          <div class="flashcard-container" onclick="flipCard(this)"><div class="flashcard"><div class="flashcard-front"><div class="flashcard-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3>Motivación intrínseca</h3><span class="flashcard-hint">Haz clic para girar</span></div><div class="flashcard-back"><p><strong>Nace del interior del usuario.</strong> El compromiso se genera por la autonomía, el propósito y el placer de realizar la actividad en sí misma.</p></div></div></div>
+          <div class="flashcard-container" onclick="flipCard(this)"><div class="flashcard"><div class="flashcard-front"><div class="flashcard-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div><h3>Motivación extrínseca</h3><span class="flashcard-hint">Haz clic para girar</span></div><div class="flashcard-back"><p><strong>Depende de estímulos externos.</strong> El usuario realiza la acción para obtener una recompensa (como puntos o medallas) o para evitar una penalización.</p></div></div></div>
         </div>
 
-        <!-- BOTÓN CONTINUAR 1 -->
+        <!-- DIAGRAMA INTERACTIVO: 3 CONCEPTOS -->
+        <div class="concept-diagram" style="margin:50px 0;background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-md);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--secondary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 style="font-size:1.3rem;font-weight:700;color:var(--text-main);">El diagrama interactivo: el canal de flow</h3>
+          </div>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.5;margin-bottom:24px;">Haz clic en cada concepto para entender la relación entre desafío y habilidad:</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:600px;margin:0 auto;">
+            <div class="concept-card" onclick="showFlowInfo('flow')" style="background:var(--card-bg);border:2px solid var(--success);border-radius:var(--radius-lg);padding:24px 16px;text-align:center;cursor:pointer;transition:all 0.3s ease;box-shadow:var(--shadow-sm);">
+              <div style="font-size:2.5rem;margin-bottom:10px;">🌊</div>
+              <h4 style="font-size:1.1rem;font-weight:700;color:var(--success);margin-bottom:6px;">Flow</h4>
+              <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;">Desafío = Habilidad<br/>Compromiso óptimo</p>
+            </div>
+            <div class="concept-card" onclick="showFlowInfo('anxiety')" style="background:var(--card-bg);border:2px solid var(--error);border-radius:var(--radius-lg);padding:24px 16px;text-align:center;cursor:pointer;transition:all 0.3s ease;box-shadow:var(--shadow-sm);">
+              <div style="font-size:2.5rem;margin-bottom:10px;">😰</div>
+              <h4 style="font-size:1.1rem;font-weight:700;color:var(--error);margin-bottom:6px;">Ansiedad</h4>
+              <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;">Alto desafío<br/>Baja habilidad</p>
+            </div>
+            <div class="concept-card" onclick="showFlowInfo('boredom')" style="background:var(--card-bg);border:2px solid var(--secondary);border-radius:var(--radius-lg);padding:24px 16px;text-align:center;cursor:pointer;transition:all 0.3s ease;box-shadow:var(--shadow-sm);">
+              <div style="font-size:2.5rem;margin-bottom:10px;">😴</div>
+              <h4 style="font-size:1.1rem;font-weight:700;color:var(--secondary);margin-bottom:6px;">Aburrimiento</h4>
+              <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;">Bajo desafío<br/>Alta habilidad</p>
+            </div>
+          </div>
+          <div id="flowInfoPanel" style="margin-top:20px;padding:20px 24px;border-radius:var(--radius-md);background:var(--secondary-light);border:1px solid var(--secondary);display:none;animation:fadeIn 0.3s ease;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span id="flowInfoIcon" style="font-size:1.5rem;">🌊</span>
+              <strong id="flowInfoTitle" style="font-size:1.1rem;color:var(--text-main);">Canal de Flow</strong>
+            </div>
+            <p id="flowInfoDescription" style="font-size:0.9rem;line-height:1.6;color:var(--text-muted);">El estado de flow ocurre cuando el nivel de desafío de una tarea está perfectamente equilibrado con la habilidad de la persona que la realiza. Ni tan fácil que aburra, ni tan difícil que frustre.</p>
+          </div>
+          <style>
+            .concept-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(47,62,70,0.1) !important; }
+            .concept-card:active { transform: translateY(-2px); }
+            @media (max-width: 600px) {
+              .concept-diagram { padding: 20px 16px !important; }
+              .concept-card { padding: 16px 10px !important; }
+              .concept-card h4 { font-size: 0.9rem !important; }
+              .concept-card div:first-child { font-size: 2rem !important; }
+            }
+          </style>
+        </div>
+
         <div class="continue-divider">
-          <button class="continue-btn" onclick="unlockNextSection(2)">
-            <span>Continuar</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
-            </svg>
-          </button>
+          <button class="continue-btn" onclick="unlockNextSection(2)"><span>Continuar</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"/></svg></button>
         </div>
       </section>
 
-
-      <!-- =========================================
-           [BLOQUE 3: MÓDULO 2 - DE PUNTOS A EXPERIENCIAS]
-           ========================================= -->
+      <!-- ===== MÓDULO 2 ===== -->
       <section id="modulo-2" class="course-section hidden-section">
+        <div class="section-illustration-wrapper">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100px;height:100px;">
+            <circle cx="50" cy="50" r="48" fill="var(--secondary-light)" stroke="var(--secondary)" stroke-width="2"/>
+            <path d="M50 22 l4 12 12-3-7 10 10 7-13 1 2 13-8-8-10 6 3-12-12-4 9-8-3-13z" fill="var(--secondary)" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="25" cy="45" r="4" fill="var(--text-muted)" opacity="0.3"/>
+            <circle cx="32" cy="55" r="3" fill="var(--text-muted)" opacity="0.2"/>
+            <circle cx="22" cy="60" r="2" fill="var(--text-muted)" opacity="0.15"/>
+            <path d="M28 70 L72 70" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M65 65 L72 70 L65 75" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="35" y="65" font-size="5" fill="var(--accent)" font-weight="700" font-family="Inter,sans-serif">PBL</text>
+            <text x="60" y="65" font-size="5" fill="var(--success)" font-weight="700" font-family="Inter,sans-serif">FLOW</text>
+            <circle cx="80" cy="35" r="3" fill="var(--success)" opacity="0.6"/>
+            <circle cx="18" cy="30" r="2" fill="var(--accent)" opacity="0.5"/>
+          </svg>
+        </div>
         <div class="section-header">
           <div class="section-meta">Módulo 2</div>
-          <h2 class="section-title">De Puntos a Experiencias</h2>
+          <h2 class="section-title">De puntos a experiencias</h2>
         </div>
-
-        <!-- Bloque de Cita Destacada -->
         <div class="quote-box">
-          <p class="quote-text">
-            "La gamificación no es convertir el trabajo en un juego; es usar la psicología del juego para hacer el trabajo más significativo."
-          </p>
+          <p class="quote-text">"La gamificación no es convertir el trabajo en un juego; es usar la psicología del juego para hacer el trabajo más significativo."</p>
           <div class="quote-author">— Amy Jo Kim, Diseñadora de Juegos</div>
         </div>
+        <p class="section-intro-text" style="margin-top:30px;">Durante mucho tiempo, se creyó que gamificar una aplicación consistía en pegar una capa de puntuaciones a cualquier flujo aburrido. Esta concepción superficial ha cambiado a favor del diseño de sistemas centrados en el usuario.</p>
 
-        <p class="section-intro-text" style="margin-top: 30px;">
-          Durante mucho tiempo, se creyó que gamificar una aplicación consistía en pegar una capa de puntuaciones a cualquier flujo aburrido. Esta concepción superficial ha cambiado a favor del diseño de sistemas centrados en el usuario.
-        </p>
+        <!-- VIDEO -->
+        <div class="video-container" style="margin:40px 0;position:relative;width:100%;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);">
+          <div class="video-header" style="background:var(--accent);padding:12px 20px;display:flex;align-items:center;gap:10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span style="color:white;font-weight:600;font-size:0.9rem;">Video: ¿Qué es la gamificación?</span>
+          </div>
+          <div style="position:relative;padding-bottom:56.25%;height:0;background:#1a1a2e;">
+            <video style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+              src="video-gamificacion.mp4"
+              controls
+              preload="metadata"
+              playsinline>
+              Tu navegador no soporta el reproductor de video.
+            </video>
+          </div>
+          <div style="padding:12px 20px;background:var(--card-bg);border:1px solid var(--border-color);border-top:none;font-size:0.85rem;color:var(--text-muted);">
+            <strong style="color:var(--text-main);">🎯 Pista:</strong> La gamificación efectiva va mucho más allá de sumar puntos. Observa cómo se conecta con los conceptos de motivación intrínseca y extrínseca que vimos en el módulo anterior.
+          </div>
+        </div>
 
-        <!-- COMPONENTE 3: COMPARATIVA LADO A LADO -->
-        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 24px;">Comparativa del Diseño de Gamificación</h3>
-        
+        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:24px;">Comparativa del diseño de gamificación</h3>
         <div class="comparison-grid">
-          <!-- Columna Izquierda (Superficial) -->
           <div class="comparison-card negative">
-            <span class="comparison-label">El Enfoque Superficial</span>
-            <h4 class="comparison-title">PBL Vacío (Points, Badges, Leaderboards)</h4>
+            <span class="comparison-label">El enfoque superficial</span>
+            <h4 class="comparison-title">PBL vacío (Points, Badges, Leaderboards)</h4>
             <ul class="comparison-list">
-              <li class="comparison-list-item">
-                <!-- SVG Cruz -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                Dependencia absoluta en recompensas extrínsecas que fatigan rápidamente.
-              </li>
-              <li class="comparison-list-item">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                El usuario realiza tareas rutinarias solo por el incentivo inmediato.
-              </li>
-              <li class="comparison-list-item">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                Una vez retirada la recompensa, el comportamiento del usuario cesa de golpe.
-              </li>
+              <li class="comparison-list-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Dependencia absoluta en recompensas extrínsecas que fatigan rápidamente.</li>
+              <li class="comparison-list-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>El usuario realiza tareas rutinarias solo por el incentivo inmediato.</li>
+              <li class="comparison-list-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Una vez retirada la recompensa, el comportamiento del usuario cesa de golpe.</li>
             </ul>
           </div>
-
-          <!-- Columna Derecha (Profundo) -->
           <div class="comparison-card positive">
-            <span class="comparison-label">El Enfoque Profundo</span>
-            <h4 class="comparison-title">Serious Games & Engagement Dinámico</h4>
+            <span class="comparison-label">El enfoque profundo</span>
+            <h4 class="comparison-title">Serious games & engagement dinámico</h4>
             <ul class="comparison-list">
-              <li class="comparison-list-item">
-                <!-- SVG Check -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Uso de narrativas inmersivas que vinculan al usuario emocionalmente.
-              </li>
-              <li class="comparison-list-item">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Desafíos adaptativos y de maestría que fomentan la motivación intrínseca.
-              </li>
-              <li class="comparison-list-item">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                El usuario perdura porque experimenta progreso y autonomía personal.
-              </li>
+              <li class="comparison-list-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Uso de narrativas inmersivas que vinculan al usuario emocionalmente.</li>
+              <li class="comparison-list-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Desafíos adaptativos y de maestría que fomentan la motivación intrínseca.</li>
+              <li class="comparison-list-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>El usuario perdura porque experimenta progreso y autonomía personal.</li>
             </ul>
           </div>
         </div>
 
-        <!-- BOTÓN CONTINUAR 2 -->
         <div class="continue-divider">
-          <button class="continue-btn" onclick="unlockNextSection(3)">
-            <span>Continuar</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
-            </svg>
-          </button>
+          <button class="continue-btn" onclick="unlockNextSection(3)"><span>Continuar</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"/></svg></button>
         </div>
       </section>
 
-
-      <!-- =========================================
-           [BLOQUE 4: MÓDULO 3 - EL FEEDBACK LOOP]
-           ========================================= -->
+      <!-- ===== MÓDULO 3 ===== -->
       <section id="modulo-3" class="course-section hidden-section">
+        <div class="section-illustration-wrapper">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100px;height:100px;">
+            <circle cx="50" cy="50" r="48" fill="var(--secondary-light)" stroke="var(--secondary)" stroke-width="2"/>
+            <circle cx="50" cy="50" r="32" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <path d="M50 18 A32 32 0 0 1 78 68" stroke="var(--accent)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M76 62 L78 68 L72 66" stroke="var(--accent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="50" cy="25" r="14" fill="var(--card-bg)" stroke="var(--secondary)" stroke-width="2.5"/>
+            <text x="44" y="30" font-size="9" fill="var(--text-main)" font-weight="700" font-family="Inter,sans-serif">T</text>
+            <text x="48" y="30" font-size="6" fill="var(--text-muted)" font-family="Inter,sans-serif">rigger</text>
+            <circle cx="75" cy="58" r="14" fill="var(--card-bg)" stroke="var(--success)" stroke-width="2.5"/>
+            <text x="70" y="63" font-size="7" fill="var(--text-main)" font-weight="700" font-family="Inter,sans-serif">A</text>
+            <text x="73" y="63" font-size="5" fill="var(--text-muted)" font-family="Inter,sans-serif">ccion</text>
+            <circle cx="35" cy="72" r="14" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2.5"/>
+            <text x="28" y="77" font-size="7" fill="var(--text-main)" font-weight="700" font-family="Inter,sans-serif">R</text>
+            <text x="33" y="77" font-size="4" fill="var(--text-muted)" font-family="Inter,sans-serif">ecomp.</text>
+            <path d="M60 32 Q68 42 70 50" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M67 64 Q55 74 45 72" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M35 62 Q40 42 44 35" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="82" cy="25" r="3" fill="var(--success)" opacity="0.6"/>
+            <circle cx="20" cy="90" r="2" fill="var(--secondary)" opacity="0.5"/>
+          </svg>
+        </div>
         <div class="section-header">
           <div class="section-meta">Módulo 3</div>
-          <h2 class="section-title">El "Loop" de Retroalimentación</h2>
+          <h2 class="section-title">El "loop" de retroalimentación</h2>
         </div>
+        <p class="section-intro-text">El corazón mecánico de cualquier entorno interactivo es el ciclo o "loop" de retroalimentación. Este ciclo guía el comportamiento humano y consolida hábitos positivos mediante respuestas eficientes ante las acciones del usuario.</p>
 
-        <p class="section-intro-text">
-          El corazón mecánico de cualquier entorno interactivo es el ciclo o "loop" de retroalimentación. Este ciclo guía el comportamiento humano y consolida hábitos positivos mediante respuestas eficientes ante las acciones del usuario.
-        </p>
-
-        <!-- COMPONENTE 4: PESTAÑAS HORIZONTALES (TABS) -->
-        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;">Las Fases del Loop de Hábito</h3>
-        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
-          Haz clic en cada pestaña para entender cómo funciona la estructura clásica del bucle:
-        </p>
-
+        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:12px;">Las fases del loop de hábito</h3>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.6;margin-bottom:24px;">Haz clic en cada pestaña para entender cómo funciona la estructura clásica del bucle:</p>
         <div class="tabs-container">
           <div class="tabs-header">
             <button class="tab-btn active-tab" onclick="switchTab(event, 'panel-detonante')">Detonante</button>
@@ -1716,597 +615,375 @@
             <button class="tab-btn" onclick="switchTab(event, 'panel-recompensa')">Recompensa</button>
           </div>
           <div class="tabs-content">
-            <!-- Detonante -->
             <div id="panel-detonante" class="tab-panel active-panel">
-              <h4 class="tab-panel-title">El Disparador (Trigger)</h4>
-              <p class="tab-panel-text">
-                Es la señal o evento que inicia el comportamiento del usuario. Puede ser de dos naturalezas:
-                <br><br>
-                • <strong>Externo:</strong> Un correo recordatorio, un indicador de color en la interfaz, un sonido o una notificación push en el móvil.
-                <br>
-                • <strong>Interno:</strong> Una emoción, un estado de ánimo o una necesidad (por ejemplo, el aburrimiento impulsando a abrir una red social).
-              </p>
+              <h4 class="tab-panel-title">El disparador (trigger)</h4>
+              <p class="tab-panel-text">Es la señal o evento que inicia el comportamiento del usuario. Puede ser de dos naturalezas:<br><br>• <strong>Externo:</strong> Un correo recordatorio, un indicador de color en la interfaz, un sonido o una notificación push en el móvil.<br>• <strong>Interno:</strong> Una emoción, un estado de ánimo o una necesidad (por ejemplo, el aburrimiento impulsando a abrir una red social).</p>
             </div>
-            <!-- Acción -->
             <div id="panel-accion" class="tab-panel">
-              <h4 class="tab-panel-title">La Acción (Action)</h4>
-              <p class="tab-panel-text">
-                Es el comportamiento físico o cognitivo que realiza el usuario tras recibir el detonante. 
-                <br><br>
-                Para que el bucle de hábito no se rompa, esta acción debe diseñarse con la **menor fricción posible**. Según el modelo de Fogg, para que una acción ocurra, el usuario debe poseer tanto la motivación como la capacidad física/mental de realizarla en ese instante.
-              </p>
+              <h4 class="tab-panel-title">La acción (action)</h4>
+              <p class="tab-panel-text">Es el comportamiento físico o cognitivo que realiza el usuario tras recibir el detonante.<br><br>Para que el bucle de hábito no se rompa, esta acción debe diseñarse con la <strong>menor fricción posible</strong>. Según el modelo de Fogg, para que una acción ocurra, el usuario debe poseer tanto la motivación como la capacidad física/mental de realizarla en ese instante.</p>
             </div>
-            <!-- Recompensa -->
             <div id="panel-recompensa" class="tab-panel">
-              <h4 class="tab-panel-title">La Recompensa Variable</h4>
-              <p class="tab-panel-text">
-                Es el beneficio o retroalimentación inmediata que recibe el usuario al completar la acción.
-                <br><br>
-                Para potenciar el enganche y la dopamina, la recompensa debe ser **variable e inesperada** (como en los juegos de azar o los feeds de contenidos). Si el usuario recibe exactamente el mismo premio en el mismo formato siempre, se produce habituación y la atención disminuye rápidamente.
-              </p>
+              <h4 class="tab-panel-title">La recompensa variable</h4>
+              <p class="tab-panel-text">Es el beneficio o retroalimentación inmediata que recibe el usuario al completar la acción.<br><br>Para potenciar el enganche y la dopamina, la recompensa debe ser <strong>variable e inesperada</strong> (como en los juegos de azar o los feeds de contenidos). Si el usuario recibe exactamente el mismo premio en el mismo formato siempre, se produce habituación y la atención disminuye rápidamente.</p>
             </div>
           </div>
         </div>
 
-
-        <!-- COMPONENTE 5: KNOWLEDGE CHECK (Actividad de Bloqueo Obligatoria) -->
         <div class="knowledge-card" id="knowledgeCheckCard">
-          <div class="kc-header">KNOWLEDGE CHECK</div>
-          <h4 class="kc-question">
-            Caso Práctico: Una aplicación móvil para el aprendizaje de idiomas registra un alto volumen de descargas e inicio, pero un abandono del 75% de los usuarios durante la segunda semana. ¿Qué estrategia de gamificación solucionaría mejor este problema de retención?
-          </h4>
-          
+          <div class="kc-header">Knowledge check</div>
+          <h4 class="kc-question">Caso Práctico: Una aplicación móvil para el aprendizaje de idiomas registra un alto volumen de descargas e inicio, pero un abandono del 75% de los usuarios durante la segunda semana. ¿Qué estrategia de gamificación solucionaría mejor este problema de retención?</h4>
           <div class="kc-options">
-            <label class="kc-option-label">
-              <input type="radio" name="kc-option" value="A" onchange="selectKcOption(this)">
-              <div class="kc-radio-custom"></div>
-              <span>A) Añadir un nuevo set de medallas virtuales y trofeos llamativos al completar cada lección individual.</span>
-            </label>
-            
-            <label class="kc-option-label">
-              <input type="radio" name="kc-option" value="B" onchange="selectKcOption(this)">
-              <div class="kc-radio-custom"></div>
-              <span>B) Introducir micro-desafíos personalizados y ajustar dinámicamente la dificultad según el rendimiento del usuario para mantener el Canal de Flow.</span>
-            </label>
-            
-            <label class="kc-option-label">
-              <input type="radio" name="kc-option" value="C" onchange="selectKcOption(this)">
-              <div class="kc-radio-custom"></div>
-              <span>C) Crear una tabla de posiciones global y competitiva donde se clasifique a todos los usuarios desde el primer día.</span>
-            </label>
+            <label class="kc-option-label"><input type="radio" name="kc-option" value="A" onchange="selectKcOption(this)"><div class="kc-radio-custom"></div><span>A) Añadir un nuevo set de medallas virtuales y trofeos llamativos al completar cada lección individual.</span></label>
+            <label class="kc-option-label"><input type="radio" name="kc-option" value="B" onchange="selectKcOption(this)"><div class="kc-radio-custom"></div><span>B) Introducir micro-desafíos personalizados y ajustar dinámicamente la dificultad según el rendimiento del usuario para mantener el Canal de Flow.</span></label>
+            <label class="kc-option-label"><input type="radio" name="kc-option" value="C" onchange="selectKcOption(this)"><div class="kc-radio-custom"></div><span>C) Crear una tabla de posiciones global y competitiva donde se clasifique a todos los usuarios desde el primer día.</span></label>
           </div>
-
-          <!-- Caja de retroalimentación incorrecta -->
           <div class="kc-feedback-box incorrect" id="kc-feedback-incorrect">
-            <div class="feedback-title">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-              Respuesta Incorrecta
-            </div>
-            <p id="kc-feedback-incorrect-text">
-              Inténtalo de nuevo. Analiza si la recompensa es superficial o si la presión competitiva empeoraría la frustración a corto plazo.
-            </p>
+            <div class="feedback-title"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>Respuesta Incorrecta</div>
+            <p id="kc-feedback-incorrect-text">Inténtalo de nuevo. Analiza si la recompensa es superficial o si la presión competitiva empeoraría la frustración a corto plazo.</p>
           </div>
-
-          <!-- Caja de retroalimentación correcta -->
           <div class="kc-feedback-box correct" id="kc-feedback-correct">
-            <div class="feedback-title">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              ¡Respuesta Correcta!
-            </div>
-            <p>
-              Excelente decisión. Al equilibrar de forma constante la dificultad del reto con la habilidad real del alumno, evitamos que experimente aburrimiento (si es muy fácil) o frustración extrema (si es muy complejo). Esto lo mantiene en el <strong>"Canal de Flow"</strong> y fomenta su motivación intrínseca, maximizando la retención a largo plazo.
-            </p>
+            <div class="feedback-title"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>¡Respuesta Correcta!</div>
+            <p>Excelente decisión. Al equilibrar de forma constante la dificultad del reto con la habilidad real del alumno, evitamos que experimente aburrimiento (si es muy fácil) o frustración extrema (si es muy complejo). Esto lo mantiene en el <strong>"Canal de Flow"</strong> y fomenta su motivación intrínseca, maximizando la retención a largo plazo.</p>
           </div>
         </div>
 
-        <!-- BOTÓN CONTINUAR 3 (BLOQUEADO POR ACTIVIDAD) -->
         <div class="continue-divider">
           <button class="continue-btn" id="continueBtn3" disabled onclick="unlockNextSection(4)">
             <span id="continueBtn3Text">Completa la actividad anterior para continuar</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"/></svg>
           </button>
         </div>
       </section>
 
-
-      <!-- =========================================
-           [BLOQUE 5: CONCLUSIÓN Y CHECKLIST]
-           ========================================= -->
+      <!-- ===== CONCLUSIÓN ===== -->
       <section id="conclusion" class="course-section hidden-section">
+        <div class="section-illustration-wrapper">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100px;height:100px;">
+            <circle cx="50" cy="50" r="48" fill="var(--secondary-light)" stroke="var(--secondary)" stroke-width="2"/>
+            <circle cx="50" cy="42" r="22" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="50" cy="42" r="16" fill="var(--secondary-light)" stroke="var(--secondary)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <path d="M40 42 L47 49 L61 34" stroke="var(--success)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M35 60 L50 82 L65 60" fill="var(--accent)" stroke="var(--accent-hover)" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M40 60 L50 78 L60 60" fill="var(--secondary)" stroke="var(--accent-hover)" stroke-width="1" stroke-linejoin="round"/>
+            <path d="M20 30 l2 4 4-1-2 4 3 2-4 1 1 4-3-3-3 2 1-4-4-1 3-3-2-4z" fill="var(--secondary)" opacity="0.6"/>
+            <path d="M78 75 l1 3 3-1-2 3 3 2-3 1 1 3-2-2-3 1 1-3-3-1 2-2-1-3z" fill="var(--secondary)" opacity="0.6"/>
+            <circle cx="80" cy="28" r="3" fill="var(--success)" opacity="0.5"/>
+          </svg>
+        </div>
         <div class="section-header">
           <div class="section-meta">Conclusión</div>
-          <h2 class="section-title">Checklist para tu Próximo Proyecto Gamificado</h2>
+          <h2 class="section-title">Checklist para tu próximo proyecto gamificado</h2>
         </div>
+        <p class="section-intro-text">¡Felicidades por llegar hasta aquí! Antes de aplicar estos conceptos en tus propios diseños de interacción, asegúrate de haber considerado los siguientes pilares de gamificación:</p>
 
-        <p class="section-intro-text">
-          ¡Felicidades por llegar hasta aquí! Antes de aplicar estos conceptos en tus propios diseños de interacción, asegúrate de haber considerado los siguientes pilares de gamificación:
-        </p>
-
-        <!-- COMPONENTE 6: LISTA DE VERIFICACIÓN INTERACTIVA (CHECKLIST) -->
         <div class="checklist-card">
           <div class="checklist-items">
-            <!-- Item 1 -->
-            <label class="checklist-item">
-              <input type="checkbox" id="chk-1" onchange="toggleChecklistItem(this.parentNode, 1)">
-              <div class="checklist-check-custom">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span class="checklist-text">Definir claramente los objetivos de negocio y alinearlos con motivadores humanos.</span>
-            </label>
-
-            <!-- Item 2 -->
-            <label class="checklist-item">
-              <input type="checkbox" id="chk-2" onchange="toggleChecklistItem(this.parentNode, 2)">
-              <div class="checklist-check-custom">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span class="checklist-text">Identificar los perfiles de jugador predominantes en mi audiencia objetivo (Triunfadores, Socializadores, etc.).</span>
-            </label>
-
-            <!-- Item 3 -->
-            <label class="checklist-item">
-              <input type="checkbox" id="chk-3" onchange="toggleChecklistItem(this.parentNode, 3)">
-              <div class="checklist-check-custom">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span class="checklist-text">Diseñar un loop de feedback dinámico con detonantes claros y recompensas variables significativas.</span>
-            </label>
-
-            <!-- Item 4 -->
-            <label class="checklist-item">
-              <input type="checkbox" id="chk-4" onchange="toggleChecklistItem(this.parentNode, 4)">
-              <div class="checklist-check-custom">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span class="checklist-text">Establecer métricas sólidas de engagement que vayan más allá de los puntos y medallas vacías.</span>
-            </label>
+            <label class="checklist-item"><input type="checkbox" id="chk-1" onchange="toggleChecklistItem(this.parentNode, 1)"><div class="checklist-check-custom"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><span class="checklist-text">Definir claramente los objetivos de negocio y alinearlos con motivadores humanos.</span></label>
+            <label class="checklist-item"><input type="checkbox" id="chk-2" onchange="toggleChecklistItem(this.parentNode, 2)"><div class="checklist-check-custom"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><span class="checklist-text">Identificar los perfiles de jugador predominantes en mi audiencia objetivo (Triunfadores, Socializadores, etc.).</span></label>
+            <label class="checklist-item"><input type="checkbox" id="chk-3" onchange="toggleChecklistItem(this.parentNode, 3)"><div class="checklist-check-custom"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><span class="checklist-text">Diseñar un loop de feedback dinámico con detonantes claros y recompensas variables significativas.</span></label>
+            <label class="checklist-item"><input type="checkbox" id="chk-4" onchange="toggleChecklistItem(this.parentNode, 4)"><div class="checklist-check-custom"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><span class="checklist-text">Establecer métricas sólidas de engagement que vayan más allá de los puntos y medallas vacías.</span></label>
           </div>
         </div>
 
-        <!-- TARJETA FINAL DE CURSO COMPLETADO -->
+        <!-- CURSO COMPLETADO -->
         <div class="course-completed-card" id="courseCompletedCard">
           <div class="confetti-container" id="confettiContainer"></div>
           <span class="completed-icon">🏆</span>
           <h3 class="completed-title">¡Curso Completado!</h3>
-          <p class="completed-desc">
-            Has desbloqueado exitosamente todo el contenido y resuelto el caso práctico de diseño gamificado. ¡Estás listo para crear entornos dinámicos e irresistibles!
-          </p>
+          <p class="completed-desc">Has desbloqueado exitosamente todo el contenido y resuelto el caso práctico de diseño gamificado. ¡Estás listo para crear entornos dinámicos e irresistibles!</p>
         </div>
+
+        <!-- DESCARGA PDF (visible al completar el curso) -->
+        <section id="pdf-download" class="course-section hidden-section" style="margin-top:20px;">
+          <div class="pdf-download-card" style="background:linear-gradient(135deg,var(--secondary-light) 0%,var(--card-bg) 100%);border:2px dashed var(--accent);border-radius:var(--radius-lg);padding:40px 32px;text-align:center;box-shadow:var(--shadow-md);position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:var(--secondary);opacity:0.08;"></div>
+            <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;border-radius:50%;background:var(--accent);opacity:0.06;"></div>
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--error-light);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3 style="font-size:1.4rem;font-weight:800;color:var(--text-main);margin-bottom:12px;">Descargar curso en PDF</h3>
+            <a href="curso-gamificacion.pdf" download="curso-gamificacion.pdf" class="btn-primary" style="background:var(--accent);padding:16px 32px;font-size:1rem;display:inline-flex;text-decoration:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Descargar PDF</span>
+            </a>
+          </div>
+        </section>
+
       </section>
 
     </div>
   </main>
 
-  <!-- LÓGICA DE INTERACCIONES Y PROGRESO -->
+  <!-- SCORM API Wrapper -->
   <script>
-    // ESTADO DE NAVEGACIÓN Y DESBLOQUEOS
-    const state = {
-      unlockedSections: [1], // Módulos/secciones desbloqueadas (1: Portada y Modulo 1)
-      m2Unlocked: false,
-      m3Unlocked: false,
-      conclusionUnlocked: false,
-      kcCompleted: false,
-      checklistItems: [false, false, false, false],
-      totalChecked: 0
-    };
+    (function() {
+      var API = {};
 
-    // Referencias HTML
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-    const menuToggle = document.getElementById('menuToggle');
-    const headerProgressBar = document.getElementById('headerProgressBar');
-    const headerProgressText = document.getElementById('headerProgressText');
-    
-    const secModulo2 = document.getElementById('modulo-2');
-    const secModulo3 = document.getElementById('modulo-3');
-    const secConclusion = document.getElementById('conclusion');
+      var lmsConnected = false;
+      var scorm12 = typeof pipwerks !== 'undefined' && pipwerks.SCORM;
 
-    // Sidebar items
-    const sbItems = {
-      portada: document.getElementById('sb-portada'),
-      m1: document.getElementById('sb-m1'),
-      m2: document.getElementById('sb-m2'),
-      m3: document.getElementById('sb-m3'),
-      conclusion: document.getElementById('sb-conclusion')
-    };
+      function scormInit() {
+        if (scorm12) {
+          pipwerks.SCORM.init();
+          lmsConnected = true;
+        }
+      }
 
-    // Sidebar icons
-    const iconsHtml = {
-      circle: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>`,
-      lock: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
-      check: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2EC4B6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`
-    };
+      function scormSetProgress(val) {
+        if (!lmsConnected) return;
+        var pct = Math.round(val);
+        if (scorm12) {
+          pipwerks.SCORM.set('cmi.core.score.raw', pct);
+          pipwerks.SCORM.set('cmi.core.score.max', 100);
+          pipwerks.SCORM.set('cmi.core.score.min', 0);
+          pipwerks.SCORM.set('cmi.core.lesson_status', pct >= 100 ? 'completed' : 'incomplete');
+        }
+      }
 
-    // INICIALIZACIÓN
-    window.addEventListener('DOMContentLoaded', () => {
-      updateProgress();
-      setupSidebarToggle();
+      function scormComplete() {
+        if (!lmsConnected) return;
+        if (scorm12) {
+          pipwerks.SCORM.set('cmi.core.lesson_status', 'completed');
+          pipwerks.SCORM.save();
+        }
+      }
+
+      window.scormInit = scormInit;
+      window.scormSetProgress = scormSetProgress;
+      window.scormComplete = scormComplete;
+    })();
+  </script>
+
+  <!-- MAIN SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      scormInit();
     });
 
-    // 1. CÁLCULO DE PROGRESO DINÁMICO
-    function updateProgress() {
-      // Regla de cálculo:
-      // Base Portada: 20%
-      // Modulo 2 desbloqueado: +20% (total 40%)
-      // Modulo 3 desbloqueado: +20% (total 60%)
-      // Conclusión desbloqueado: +20% (total 80%)
-      // Checklist (4 items): cada uno suma 5% (+20% total, llevando a 100%)
-      
-      let progress = 20;
-      
-      if (state.m2Unlocked) progress += 20;
-      if (state.m3Unlocked) progress += 20;
-      if (state.conclusionUnlocked) progress += 20;
-      
-      // Sumar checkboxes
-      progress += (state.totalChecked * 5);
-      
-      // Actualizar visualizaciones del Header
-      headerProgressBar.style.width = `${progress}%`;
-      headerProgressText.textContent = `${progress}% completado`;
+    // ==============================================
+    // FUNCIONES DE LA INFOGRÁFICA INTERACTIVA
+    // ==============================================
 
-      // Actualizar iconos de progreso en el Sidebar
-      // Portada y Módulo 1 se consideran completados si Módulo 2 está desbloqueado
-      if (state.m2Unlocked) {
-        document.getElementById('icon-portada').innerHTML = iconsHtml.check;
-        document.getElementById('icon-m1').innerHTML = iconsHtml.check;
-      }
-      
-      // Módulo 2 completado si Módulo 3 está desbloqueado
-      if (state.m3Unlocked) {
-        document.getElementById('icon-m2').innerHTML = iconsHtml.check;
-      }
+    var flowInfoData = {
+      flow: { icon: '🌊', title: 'Canal de Flow', desc: 'El estado de flow ocurre cuando el nivel de desafío de una tarea está perfectamente equilibrado con la habilidad de la persona que la realiza. Ni tan fácil que aburra, ni tan difícil que frustre.' },
+      anxiety: { icon: '😰', title: 'Zona de Ansiedad', desc: 'Cuando el desafío es demasiado alto para el nivel de habilidad actual, el usuario experimenta estrés, frustración y agobio.' },
+      boredom: { icon: '😴', title: 'Zona de Aburrimiento', desc: 'Cuando la tarea es demasiado fácil en relación con la habilidad del usuario, este se aburre y desconecta.' }
+    };
 
-      // Módulo 3 completado si Conclusión está desbloqueada
-      if (state.conclusionUnlocked) {
-        document.getElementById('icon-m3').innerHTML = iconsHtml.check;
-      }
-
-      // Conclusión completada si todos los checkboxes están marcados
-      if (state.totalChecked === 4) {
-        document.getElementById('icon-conclusion').innerHTML = iconsHtml.check;
-        showCourseCompleted();
-      } else if (state.conclusionUnlocked) {
-        document.getElementById('icon-conclusion').innerHTML = iconsHtml.circle;
-      }
+    function showFlowInfo(zone) {
+      var panel = document.getElementById('flowInfoPanel');
+      var data = flowInfoData[zone];
+      if (!data) return;
+      document.getElementById('flowInfoIcon').textContent = data.icon;
+      document.getElementById('flowInfoTitle').textContent = data.title;
+      document.getElementById('flowInfoDescription').textContent = data.desc;
+      panel.style.display = 'block';
     }
 
-    // 2. TOGGLE DE SIDEBAR (RESPONSIVO Y DESKTOP)
-    let lastVisibleSidebarState = 'expanded';
-    let currentSidebarState = 'expanded';
-
-    function setSidebarState(stateName) {
-      const body = document.body;
-      
-      // Remover clases de estado anteriores
-      body.classList.remove('sb-state-expanded', 'sb-state-compact', 'sb-state-hidden');
-      
-      currentSidebarState = stateName;
-      body.classList.add(`sb-state-${stateName}`);
-      
-      // Guardar el último estado visible si es expanded o compact
-      if (stateName === 'expanded' || stateName === 'compact') {
-        lastVisibleSidebarState = stateName;
-        // Cerrar overlay en móvil
-        sidebarOverlay.classList.remove('open');
-        sidebar.classList.remove('open');
-      } else if (stateName === 'hidden') {
-        // En móvil, también remover las clases de drawer
-        sidebar.classList.remove('open');
-        sidebarOverlay.classList.remove('open');
-      }
+    function hideFlowInfo() {
+      var panel = document.getElementById('flowInfoPanel');
+      if (panel) { panel.style.display = 'none'; }
     }
 
-    function toggleSidebar() {
-      if (window.innerWidth < 992) {
-        // Modo móvil: toggle simple de drawer
-        sidebar.classList.toggle('open');
-        sidebarOverlay.classList.toggle('open');
-      } else {
-        // Modo desktop: alternar entre visible (último estado) y oculto
-        if (currentSidebarState === 'hidden') {
-          setSidebarState(lastVisibleSidebarState);
-        } else {
-          setSidebarState('hidden');
-        }
-      }
+    // ==============================================
+    // LÓGICA DE INTERACCIONES Y PROGRESO
+    // ==============================================
+
+    // ESTADO DE NAVEGACIÓN Y DESBLOQUEOS
+    const state = {
+      m1Unlocked: false,
+      m2Unlocked: false,
+      m3Unlocked: false,
+      m4Unlocked: false,
+      kcPassed: false
+    };
+
+    // FUNCIONALIDAD DEL MENÚ HAMBURGUESA
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('open');
+    });
+    document.getElementById('sidebarOverlay').addEventListener('click', function() {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('open');
+    });
+
+    function setSidebarState(s) {
+      document.body.className = 'sb-state-' + s;
     }
 
-    function setupSidebarToggle() {
-      menuToggle.addEventListener('click', toggleSidebar);
-      sidebarOverlay.addEventListener('click', toggleSidebar);
-      
-      // Inicializar el estado de la barra lateral en base al tamaño de la pantalla
-      if (window.innerWidth >= 992) {
-        setSidebarState('expanded');
-      } else {
-        setSidebarState('hidden');
-      }
-    }
-
-    // Cerrar sidebar al hacer clic en móvil
-    function closeSidebarOnMobile() {
-      if (window.innerWidth < 992) {
-        sidebar.classList.remove('open');
-        sidebarOverlay.classList.remove('open');
-      }
-    }
-
-    // 3. NAVEGACIÓN Y DESPLAZAMIENTO SUAVE CON OFFSET (Por Header Fijo)
-    function navigate(sectionId) {
-      // Verificar si la navegación está bloqueada
-      if (sectionId === 'modulo-2' && !state.m2Unlocked) return;
-      if (sectionId === 'modulo-3' && !state.m3Unlocked) return;
-      if (sectionId === 'conclusion' && !state.conclusionUnlocked) return;
-
-      closeSidebarOnMobile();
-      scrollToSection(sectionId);
-      
-      // Actualizar clase activa en el menú
-      document.querySelectorAll('.sidebar-item').forEach(item => {
-        item.classList.remove('active-nav');
-      });
-      
-      let targetNavId = 'sb-' + sectionId.replace('-', '');
-      if (sectionId === 'portada') targetNavId = 'sb-portada';
-      const targetNav = document.getElementById(targetNavId);
-      if (targetNav) targetNav.classList.add('active-nav');
-    }
-
-    function scrollToSection(id) {
-      const element = document.getElementById(id);
-      if (!element) return;
-      
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-
+    // INICIAR CURSO
     function startCourse() {
-      scrollToSection('modulo-1');
-      document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active-nav'));
-      sbItems.m1.classList.add('active-nav');
+      state.m1Unlocked = true;
+      document.getElementById('modulo-1').classList.remove('hidden-section');
+      document.getElementById('icon-m1').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+      document.getElementById('sb-m1').classList.remove('locked');
+      document.getElementById('modulo-1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateProgress();
+      scormSetProgress(getProgress());
     }
 
-    // 4. LÓGICA DE DESBLOQUEOS POR PASOS
-    function unlockNextSection(step) {
-      if (step === 2 && !state.m2Unlocked) {
-        // Desbloquear Módulo 2
-        state.m2Unlocked = true;
-        secModulo2.classList.remove('hidden-section');
-        
-        // Actualizar sidebar
-        sbItems.m2.classList.remove('locked');
-        document.getElementById('icon-m2').innerHTML = iconsHtml.circle;
-        
-        updateProgress();
-        
-        // Scroll suave al módulo 2
-        setTimeout(() => {
-          navigate('modulo-2');
-        }, 100);
-      } 
-      else if (step === 3 && !state.m3Unlocked) {
-        // Desbloquear Módulo 3
-        state.m3Unlocked = true;
-        secModulo3.classList.remove('hidden-section');
-        
-        // Actualizar sidebar
-        sbItems.m3.classList.remove('locked');
-        document.getElementById('icon-m3').innerHTML = iconsHtml.circle;
-        
-        updateProgress();
-        
-        // Scroll suave al módulo 3
-        setTimeout(() => {
-          navigate('modulo-3');
-        }, 100);
-      } 
-      else if (step === 4 && !state.conclusionUnlocked && state.kcCompleted) {
-        // Desbloquear Conclusión
-        state.conclusionUnlocked = true;
-        secConclusion.classList.remove('hidden-section');
-        
-        // Actualizar sidebar
-        sbItems.conclusion.classList.remove('locked');
-        document.getElementById('icon-conclusion').innerHTML = iconsHtml.circle;
-        
-        updateProgress();
-        
-        // Scroll suave a Conclusión
-        setTimeout(() => {
-          navigate('conclusion');
-        }, 100);
-      }
+    // NAVEGAR A UNA SECCIÓN
+    function navigate(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 5. ACORDEÓN INTERACTIVO
-    function toggleAccordion(button) {
-      const currentItem = button.closest('.accordion-item');
-      const allItems = document.querySelectorAll('.accordion-item');
-      
-      allItems.forEach(item => {
-        if (item !== currentItem) {
-          item.classList.remove('active');
-        }
+    // ACORDEÓN
+    function toggleAccordion(header) {
+      var item = header.closest('.accordion-item') || header.parentNode;
+      var isActive = item.classList.contains('active');
+      var container = item.closest('.accordion-container') || item.parentNode;
+      container.querySelectorAll('.accordion-item').forEach(function(ai) {
+        ai.classList.remove('active');
       });
-      
-      currentItem.classList.toggle('active');
-    }
-
-    // 6. FLASHCARDS (GIRO 3D)
-    function flipCard(container) {
-      const card = container.querySelector('.flashcard');
-      card.classList.toggle('flipped');
-    }
-
-    // 7. PESTAÑAS HORIZONTALES (TABS)
-    function switchTab(event, panelId) {
-      // Remover clase activa de todos los botones de pestañas
-      const tabs = event.target.closest('.tabs-container');
-      const buttons = tabs.querySelectorAll('.tab-btn');
-      buttons.forEach(btn => btn.classList.remove('active-tab'));
-      
-      // Añadir clase activa al botón actual
-      event.target.classList.add('active-tab');
-      
-      // Ocultar todos los paneles
-      const panels = tabs.querySelectorAll('.tab-panel');
-      panels.forEach(panel => panel.classList.remove('active-panel'));
-      
-      // Mostrar el panel seleccionado
-      const targetPanel = document.getElementById(panelId);
-      if (targetPanel) {
-        targetPanel.classList.add('active-panel');
+      if (!isActive) {
+        item.classList.add('active');
       }
     }
 
-    // 8. KNOWLEDGE CHECK (Lógica Interactiva de Bloqueo)
-    function selectKcOption(inputElement) {
-      const option = inputElement.value;
-      
-      // Si la actividad ya se resolvió correctamente, no permitir más clicks de cambio
-      if (state.kcCompleted && option !== 'B') return; 
-      
-      // Quitar clases previas de selección
-      const labels = document.querySelectorAll('.kc-option-label');
-      labels.forEach(l => {
+    // FLASHCARD
+    function flipCard(container) {
+      var card = container.querySelector('.flashcard');
+      if (card) {
+        card.classList.toggle('flipped');
+      }
+    }
+
+    // TABS
+    function switchTab(event, panelId) {
+      var tabsContainer = event.target.closest('.tabs-container');
+      tabsContainer.querySelectorAll('.tab-btn').forEach(function(btn) {
+        btn.classList.remove('active-tab');
+      });
+      tabsContainer.querySelectorAll('.tab-panel').forEach(function(p) {
+        p.classList.remove('active-panel');
+      });
+      event.target.classList.add('active-tab');
+      document.getElementById(panelId).classList.add('active-panel');
+    }
+
+    // KNOWLEDGE CHECK
+    function selectKcOption(input) {
+      var label = input.parentNode;
+      var card = document.getElementById('knowledgeCheckCard');
+      card.querySelectorAll('.kc-option-label').forEach(function(l) {
         l.classList.remove('checked', 'correct-selected', 'incorrect-selected');
       });
-      
-      const labelElement = inputElement.closest('.kc-option-label');
-      
-      // Seleccionar visualmente
-      labelElement.classList.add('checked');
-      
-      // Ocultar feedbacks previos
-      const fbIncorrect = document.getElementById('kc-feedback-incorrect');
-      const fbCorrect = document.getElementById('kc-feedback-correct');
-      fbIncorrect.style.display = 'none';
-      fbCorrect.style.display = 'none';
-      
-      const continueBtn3 = document.getElementById('continueBtn3');
-      const continueBtn3Text = document.getElementById('continueBtn3Text');
+      label.classList.add('checked');
+      document.getElementById('kc-feedback-incorrect').style.display = 'none';
+      document.getElementById('kc-feedback-correct').style.display = 'none';
 
-      if (option === 'B') {
-        // Respuesta Correcta
-        state.kcCompleted = true;
-        labelElement.classList.remove('checked');
-        labelElement.classList.add('correct-selected');
-        fbCorrect.style.display = 'block';
-        
-        // Habilitar botón de continuar
-        continueBtn3.removeAttribute('disabled');
-        continueBtn3Text.textContent = 'Continuar';
-        
-        // Auto Scroll leve a la caja de feedback para no perder legibilidad
-        setTimeout(() => {
-          fbCorrect.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 150);
+      if (input.value === 'B') {
+        label.classList.add('correct-selected');
+        document.getElementById('kc-feedback-correct').style.display = 'block';
+        state.kcPassed = true;
+        document.getElementById('continueBtn3').disabled = false;
+        document.getElementById('continueBtn3Text').textContent = 'Continuar';
+        scormSetProgress(getProgress());
       } else {
-        // Respuesta Incorrecta
-        labelElement.classList.remove('checked');
-        labelElement.classList.add('incorrect-selected');
-        
-        // Modificar feedback incorrecto dependiendo de la opción
-        const fbText = document.getElementById('kc-feedback-incorrect-text');
-        if (option === 'A') {
-          fbText.textContent = 'Las medallas adicionales representan motivación extrínseca superficial. Ayudan un poco al inicio, pero no resuelven la falta de interés profundo ni el aburrimiento que surge al cabo de dos semanas.';
-        } else if (option === 'C') {
-          fbText.textContent = 'Las tablas de clasificación globales competitivas suelen frustrar y desmotivar severamente a los usuarios promedio e iniciales, acelerando el abandono temprano.';
-        }
-        
-        fbIncorrect.style.display = 'block';
-        
-        // Asegurar que el botón siga bloqueado si no ha acertado antes
-        if (!state.kcCompleted) {
-          continueBtn3.setAttribute('disabled', 'true');
-          continueBtn3Text.textContent = 'Completa la actividad anterior para continuar';
-        }
-
-        setTimeout(() => {
-          fbIncorrect.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 150);
+        label.classList.add('incorrect-selected');
+        document.getElementById('kc-feedback-incorrect').style.display = 'block';
+        document.getElementById('continueBtn3').disabled = true;
+        document.getElementById('continueBtn3Text').textContent = 'Completa la actividad correctamente para continuar';
       }
     }
 
-    // 9. CHECKLIST INTERACTIVA (Conclusión)
-    function toggleChecklistItem(label, index) {
-      const checkbox = label.querySelector('input');
-      const isChecked = checkbox.checked;
-      
-      if (isChecked) {
+    // DESBLOQUEAR SIGUIENTE SECCIÓN
+    function unlockNextSection(sectionNum) {
+      var sections = ['', '', 'modulo-2', 'modulo-3', 'conclusion'];
+      var sectionId = sections[sectionNum];
+      if (!sectionId) return;
+
+      document.getElementById(sectionId).classList.remove('hidden-section');
+
+      var iconId = 'icon-m' + (sectionNum - 1);
+      var sbId = 'sb-m' + (sectionNum - 1);
+      if (document.getElementById(iconId)) {
+        document.getElementById(iconId).innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+      }
+      if (document.getElementById(sbId)) {
+        document.getElementById(sbId).classList.remove('locked');
+      }
+
+      if (sectionNum === 4) {
+        state.m4Unlocked = true;
+        document.getElementById('icon-conclusion').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+        document.getElementById('sb-conclusion').classList.remove('locked');
+      }
+
+      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateProgress();
+      scormSetProgress(getProgress());
+    }
+
+    // CHECKLIST
+    var checklistState = { 1: false, 2: false, 3: false, 4: false };
+
+    function toggleChecklistItem(label, num) {
+      var checkbox = label.querySelector('input[type="checkbox"]');
+      if (checkbox.checked) {
         label.classList.add('checked');
+        checklistState[num] = true;
       } else {
         label.classList.remove('checked');
+        checklistState[num] = false;
       }
-
-      state.checklistItems[index - 1] = isChecked;
-      state.totalChecked = state.checklistItems.filter(Boolean).length;
-      
-      updateProgress();
+      checkAllChecklist();
     }
 
-    // 10. CURSO COMPLETADO & CONFETTI
-    function showCourseCompleted() {
-      const card = document.getElementById('courseCompletedCard');
-      card.style.display = 'block';
-      
-      // Scroll suave a la tarjeta de felicitaciones
-      setTimeout(() => {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        triggerConfetti();
-      }, 300);
+    function checkAllChecklist() {
+      var allChecked = Object.values(checklistState).every(function(v) { return v; });
+      if (allChecked && state.m4Unlocked) {
+        document.getElementById('courseCompletedCard').style.display = 'block';
+        document.getElementById('pdf-download').classList.remove('hidden-section');
+        createConfetti();
+        updateProgress();
+        scormSetProgress(100);
+        scormComplete();
+      }
     }
 
-    function triggerConfetti() {
-      const container = document.getElementById('confettiContainer');
-      container.innerHTML = '';
-      const colors = ['#FF6B35', '#F7B733', '#2EC4B6', '#2F3E46', '#FEF7E7'];
-      
-      for (let i = 0; i < 70; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('confetti-particle');
-        
-        // Randomización de propiedades físicas
-        const left = Math.random() * 100; // posicion horizontal en %
-        const delay = Math.random() * 2.5; // retraso en segundos
-        const duration = 2 + Math.random() * 2; // duracion de caida
-        const size = 6 + Math.random() * 8; // tamaño
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        const rotation = Math.random() * 360; // angulo inicial
-        
-        particle.style.left = `${left}%`;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.backgroundColor = color;
-        particle.style.animationDelay = `${delay}s`;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.transform = `rotate(${rotation}deg)`;
-        
-        // Forma (50% redondas, 50% cuadradas)
-        if (Math.random() > 0.5) {
-          particle.style.borderRadius = '50%';
-        }
-        
-        container.appendChild(particle);
+    // CONFETTI
+    function createConfetti() {
+      var container = document.getElementById('confettiContainer');
+      var colors = ['#FF6B35', '#F7B733', '#2EC4B6', '#E71D36'];
+      for (var i = 0; i < 50; i++) {
+        var el = document.createElement('div');
+        el.className = 'confetti-particle';
+        el.style.left = Math.random() * 100 + '%';
+        el.style.width = (Math.random() * 8 + 4) + 'px';
+        el.style.height = (Math.random() * 8 + 4) + 'px';
+        el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        el.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        el.style.animationDelay = (Math.random() * 2) + 's';
+        container.appendChild(el);
       }
+    }
+
+    // CALCULAR PROGRESO
+    function getProgress() {
+      var unlocked = 0;
+      if (state.m1Unlocked) unlocked++;
+      if (state.m2Unlocked) unlocked++;
+      if (state.m3Unlocked) unlocked++;
+      if (state.m4Unlocked) unlocked++;
+      var kcBonus = state.kcPassed ? 1 : 0;
+      var checklistDone = Object.values(checklistState).filter(function(v) { return v; }).length;
+      var total = 5 + kcBonus + checklistDone;
+      var maxTotal = 10;
+      return Math.round((total / maxTotal) * 100);
+    }
+
+    function updateProgress() {
+      var pct = getProgress();
+      document.getElementById('headerProgressBar').style.width = pct + '%';
+      document.getElementById('headerProgressText').textContent = pct + '% completado';
     }
   </script>
+
 </body>
 </html>
